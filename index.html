@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIMBURG TRADE & ENGINEERING — Industrial Spare Parts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Oswald:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ===== Base & Variables ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0a;
+  --bg-2: #111;
+  --surface: #161616;
+  --card: #1c1c1c;
+  --card-hover: #232323;
+  --border: #2a2a2a;
+  --border-light: #3a3a3a;
+  --fg: #f5f5f5;
+  --fg-dim: #c0c0c0;
+  --muted: #8a8a8a;
+  --muted-dim: #555;
+  --brand: #e63946;
+  --brand-dark: #c1121f;
+  --brand-bright: #ff3548;
+  --cta: #00d97e;
+  --cta-dark: #00a85e;
+  --warning: #ffb700;
+  --info: #4cc9f0;
+  --blue-accent: #2563eb;
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-xl: 24px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.6);
+  --header-bg: rgba(10,10,10,0.85);
+  --topbar-bg: #050505;
+  --footer-bg: #050505;
+}
+
+body.light-theme {
+  --bg: #f4f6f8;
+  --bg-2: #ffffff;
+  --surface: #eef1f4;
+  --card: #ffffff;
+  --card-hover: #f8fafc;
+  --border: #e1e5ea;
+  --border-light: #d1d5db;
+  --fg: #111111;
+  --fg-dim: #2d2d2d;
+  --muted: #6b7280;
+  --muted-dim: #9ca3af;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
+  --header-bg: rgba(255,255,255,0.85);
+  --topbar-bg: #e9ecef;
+  --footer-bg: #f8fafc;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+::selection { background: var(--brand); color: #fff; }
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, select, textarea { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.container { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 32px; }
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(800px 600px at 80% -10%, rgba(230,57,70,0.08), transparent 60%),
+    radial-gradient(600px 400px at 0% 100%, rgba(37,99,235,0.05), transparent 60%);
+  pointer-events: none; z-index: 0;
+}
+body.light-theme::before {
+  background:
+    radial-gradient(800px 600px at 80% -10%, rgba(230,57,70,0.05), transparent 60%),
+    radial-gradient(600px 400px at 0% 100%, rgba(37,99,235,0.04), transparent 60%);
+}
+
+/* ===== LTE Logo ===== */
+.logo-lte { display: flex; align-items: center; gap: 10px; user-select: none; cursor: pointer; }
+.logo-symbol {
+  width: 46px; height: 46px; background: #000; display: flex; align-items: center; justify-content: center;
+  font-family: 'Archivo Black', sans-serif; color: #fff; font-size: 18px; border-radius: 2px;
+  position: relative; border: 1px solid #333;
+}
+.logo-symbol::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--brand); bottom: 6px; right: 6px; border-radius: 50%; }
+.logo-text-right { display: flex; flex-direction: column; line-height: 1; }
+.logo-main-text { font-family: 'Archivo Black', sans-serif; font-size: 20px; color: var(--fg); letter-spacing: 0.5px; }
+.logo-sub-text { display: flex; align-items: center; gap: 3px; margin-top: 4px; }
+.logo-trade { background: var(--brand); color: white; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 2px; letter-spacing: 0.5px; }
+.logo-amp { color: var(--fg-dim); font-weight: 800; font-size: 11px; }
+.logo-eng { background: var(--blue-accent); color: white; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 2px; letter-spacing: 0.5px; }
+
+/* ===== Topbar ===== */
+.topbar { background: var(--topbar-bg); border-bottom: 1px solid var(--border); font-size: 12px; color: var(--muted); position: relative; z-index: 50; transition: background-color .3s ease; }
+.topbar .container { display: flex; justify-content: space-between; align-items: center; height: 36px; }
+.topbar-left { display: flex; gap: 22px; align-items: center; }
+.topbar-left span i { color: var(--brand); margin-right: 6px; }
+.topbar-right { display: flex; gap: 18px; align-items: center; }
+.topbar-right a { transition: color .2s; }
+.topbar-right a:hover { color: var(--fg); }
+.topbar-right .sep { color: var(--muted-dim); }
+
+/* ===== Header ===== */
+.header { background: var(--header-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 40; transition: background-color .3s ease, border-color .3s ease; }
+.header .container { display: flex; align-items: center; gap: 32px; height: 78px; }
+.search-bar { flex: 1; max-width: 720px; display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 0 6px 0 18px; transition: border-color .2s, box-shadow .2s, background-color .3s; }
+.search-bar:focus-within { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(230,57,70,0.15); }
+.search-bar i { color: var(--muted); font-size: 14px; }
+.search-bar input { flex: 1; background: transparent; border: none; outline: none; color: var(--fg); padding: 12px 14px; font-size: 14px; }
+.search-bar input::placeholder { color: var(--muted); }
+.search-bar button { background: var(--brand); color: #fff; padding: 9px 18px; border-radius: var(--r-sm); font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 6px; transition: background .2s; }
+.search-bar button:hover { background: var(--brand-bright); }
+
+.header-actions { display: flex; align-items: center; gap: 12px; position: relative; }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border-radius: var(--r-md); color: var(--fg-dim); position: relative; transition: background .2s, color .2s; }
+.icon-btn:hover { background: var(--surface); color: var(--fg); }
+.icon-btn .badge { position: absolute; top: 4px; right: 4px; background: var(--brand); color: #fff; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; display: grid; place-items: center; border: 2px solid var(--bg); }
+
+.btn-auth { background: transparent; border: 1px solid var(--border-light); color: var(--fg); padding: 10px 18px; border-radius: var(--r-md); font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px; transition: all .2s; }
+.btn-auth:hover { background: var(--surface); border-color: var(--fg-dim); }
+.btn-auth.primary { background: var(--brand); border-color: var(--brand); color: #fff; }
+.btn-auth.primary:hover { background: var(--brand-bright); }
+
+.theme-toggle { width: 44px; height: 44px; display: grid; place-items: center; border-radius: var(--r-md); color: var(--fg-dim); background: var(--surface); border: 1px solid var(--border); transition: all .2s; }
+.theme-toggle:hover { color: var(--brand); border-color: var(--brand); }
+
+/* ===== User Dropdown Menu ===== */
+.user-menu-wrap { position: relative; }
+.user-dropdown {
+  position: absolute; top: calc(100% + 8px); right: 0;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--r-md); min-width: 200px;
+  box-shadow: var(--shadow-md); z-index: 100;
+  opacity: 0; visibility: hidden; transform: translateY(-8px);
+  transition: all .2s; overflow: hidden;
+}
+.user-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+.user-dropdown .ud-head { padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--surface); }
+.user-dropdown .ud-head .ud-name { font-weight: 700; font-size: 14px; color: var(--fg); }
+.user-dropdown .ud-head .ud-email { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.user-dropdown button { width: 100%; text-align: left; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--fg-dim); transition: all .15s; }
+.user-dropdown button:hover { background: var(--surface); color: var(--fg); }
+.user-dropdown button i { width: 18px; text-align: center; color: var(--brand); }
+.user-dropdown button.logout-btn { color: var(--brand); border-top: 1px solid var(--border); }
+.user-dropdown button.logout-btn:hover { background: rgba(230,57,70,0.1); }
+.user-dropdown button.logout-btn i { color: var(--brand); }
+
+/* ===== Category nav ===== */
+.catnav { background: var(--bg-2); border-bottom: 1px solid var(--border); position: relative; z-index: 30; transition: background-color .3s ease, border-color .3s ease; }
+.catnav .container { display: flex; align-items: center; height: 48px; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.catnav .container::-webkit-scrollbar { display: none; }
+.catnav a { padding: 8px 14px; font-size: 13px; font-weight: 600; color: var(--fg-dim); border-radius: var(--r-sm); white-space: nowrap; transition: color .2s, background .2s; display: flex; align-items: center; gap: 8px; }
+.catnav a:hover { color: var(--fg); background: var(--surface); }
+.catnav a.active { color: var(--brand); }
+.catnav a i { font-size: 11px; }
+
+/* ===== Hero ===== */
+.hero { position: relative; height: 600px; overflow: hidden; background: #000; }
+.hero-track { display: flex; height: 100%; transition: transform .9s cubic-bezier(.7,.05,.2,1); will-change: transform; }
+.slide { flex: 0 0 100%; height: 100%; position: relative; overflow: hidden; }
+.slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
+.slide-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%); pointer-events: none; }
+.hero-controls { position: absolute; bottom: 32px; left: 32px; z-index: 10; display: flex; align-items: center; gap: 14px; }
+.hero-dots { display: flex; gap: 8px; }
+.hero-dot { width: 32px; height: 4px; background: rgba(255,255,255,0.25); border-radius: 2px; cursor: pointer; transition: background .3s; position: relative; overflow: hidden; }
+.hero-dot.active { background: rgba(255,255,255,0.4); }
+.hero-dot.active::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; background: var(--brand); animation: progressFill 4s linear forwards; width: 0; }
+@keyframes progressFill { to { width: 100%; } }
+.hero-arrows { display: flex; gap: 8px; margin-left: 16px; }
+.hero-arrows button { width: 40px; height: 40px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; color: #fff; display: grid; place-items: center; transition: background .2s; }
+.hero-arrows button:hover { background: var(--brand); border-color: var(--brand); }
+
+/* ===== Trust strip ===== */
+.trust-strip { background: var(--bg-2); border-bottom: 1px solid var(--border); padding: 18px 0; transition: background-color .3s ease, border-color .3s ease; }
+.trust-strip .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.trust-item { display: flex; align-items: center; gap: 14px; }
+.trust-item i { width: 42px; height: 42px; display: grid; place-items: center; background: rgba(230,57,70,0.1); color: var(--brand); border-radius: 50%; font-size: 18px; }
+.trust-item .t-title { font-weight: 700; font-size: 14px; color: var(--fg); }
+.trust-item .t-sub { font-size: 12px; color: var(--muted); }
+
+/* ===== Section ===== */
+.section { padding: 64px 0; position: relative; z-index: 1; }
+.section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; gap: 20px; flex-wrap: wrap; }
+.section-head .label { color: var(--brand); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.section-head .label::before { content: ''; width: 24px; height: 2px; background: var(--brand); }
+.section-head h2 { font-family: 'Oswald', sans-serif; font-size: 38px; font-weight: 600; letter-spacing: -0.5px; text-transform: uppercase; line-height: 1.1; }
+.section-head .sub { color: var(--muted); margin-top: 8px; font-size: 15px; max-width: 560px; }
+
+/* ===== Categories grid ===== */
+.cat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.cat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 28px 24px; transition: all .25s; cursor: pointer; position: relative; overflow: hidden; }
+.cat-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--brand); transform: scaleY(0); transform-origin: top; transition: transform .3s; }
+.cat-card:hover { background: var(--card-hover); border-color: var(--border-light); transform: translateY(-3px); }
+.cat-card:hover::before { transform: scaleY(1); }
+.cat-card .ico { width: 54px; height: 54px; background: linear-gradient(135deg, rgba(230,57,70,0.15), rgba(230,57,70,0.03)); border: 1px solid rgba(230,57,70,0.25); border-radius: var(--r-md); display: grid; place-items: center; color: var(--brand); font-size: 22px; margin-bottom: 18px; }
+.cat-card h3 { font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 6px; text-transform: uppercase; }
+.cat-card p { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+.cat-card .meta { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12px; color: var(--fg-dim); }
+.cat-card .meta .arrow { color: var(--brand); transition: transform .25s; }
+.cat-card:hover .arrow { transform: translateX(4px); }
+
+/* ===== Filter bar ===== */
+.filter-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 16px; flex-wrap: wrap; background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 14px 18px; }
+.filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { background: var(--surface); border: 1px solid var(--border); color: var(--fg-dim); padding: 8px 14px; border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s; text-transform: uppercase; letter-spacing: 0.5px; }
+.chip:hover { border-color: var(--brand); color: var(--fg); }
+.chip.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.filter-sort { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px; }
+.filter-sort select { background: var(--surface); border: 1px solid var(--border); color: var(--fg); padding: 8px 12px; border-radius: var(--r-sm); font-size: 13px; cursor: pointer; }
+
+/* ===== Products grid with COLORFUL backgrounds ===== */
+.products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.product-card {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: all .25s; display: flex; flex-direction: column; position: relative;
+}
+.product-card:hover { border-color: var(--border-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* Category-based colorful backgrounds */
+.product-card[data-cat="Gas Control"] {
+  background: linear-gradient(160deg, rgba(230,57,70,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Gas Control"]:hover { background: linear-gradient(160deg, rgba(230,57,70,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Engine Technology"] {
+  background: linear-gradient(160deg, rgba(37,99,235,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Engine Technology"]:hover { background: linear-gradient(160deg, rgba(37,99,235,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Electrical & Ignition"] {
+  background: linear-gradient(160deg, rgba(255,183,0,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Electrical & Ignition"]:hover { background: linear-gradient(160deg, rgba(255,183,0,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Filters & Service"] {
+  background: linear-gradient(160deg, rgba(0,217,126,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Filters & Service"]:hover { background: linear-gradient(160deg, rgba(0,217,126,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Sensors"] {
+  background: linear-gradient(160deg, rgba(168,85,247,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Sensors"]:hover { background: linear-gradient(160deg, rgba(168,85,247,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Cooling System"] {
+  background: linear-gradient(160deg, rgba(34,211,238,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Cooling System"]:hover { background: linear-gradient(160deg, rgba(34,211,238,0.18) 0%, var(--card-hover) 50%); }
+
+.product-card[data-cat="Service Kits"] {
+  background: linear-gradient(160deg, rgba(236,72,153,0.12) 0%, var(--card) 50%);
+}
+.product-card[data-cat="Service Kits"]:hover { background: linear-gradient(160deg, rgba(236,72,153,0.18) 0%, var(--card-hover) 50%); }
+
+/* Colorful product image area */
+.product-img {
+  position: relative; aspect-ratio: 4/3; overflow: hidden; display: grid; place-items: center;
+}
+.product-card[data-cat="Gas Control"] .product-img { background: linear-gradient(135deg, #2a1515, #1a0808); }
+.product-card[data-cat="Engine Technology"] .product-img { background: linear-gradient(135deg, #1a2a4a, #0a1428); }
+.product-card[data-cat="Electrical & Ignition"] .product-img { background: linear-gradient(135deg, #2a2410, #1a1605); }
+.product-card[data-cat="Filters & Service"] .product-img { background: linear-gradient(135deg, #0a2818, #051408); }
+.product-card[data-cat="Sensors"] .product-img { background: linear-gradient(135deg, #241a35, #120a1c); }
+.product-card[data-cat="Cooling System"] .product-img { background: linear-gradient(135deg, #0a2a30, #051418); }
+.product-card[data-cat="Service Kits"] .product-img { background: linear-gradient(135deg, #2a1020, #14050a); }
+
+.product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.product-card:hover .product-img img { transform: scale(1.08); }
+
+/* Colorful placeholder icons per category */
+.product-img .placeholder { font-size: 56px; opacity: 0.6; }
+.product-card[data-cat="Gas Control"] .placeholder { color: #ff6b6b; text-shadow: 0 0 30px rgba(230,57,70,0.4); }
+.product-card[data-cat="Engine Technology"] .placeholder { color: #60a5fa; text-shadow: 0 0 30px rgba(37,99,235,0.4); }
+.product-card[data-cat="Electrical & Ignition"] .placeholder { color: #fbbf24; text-shadow: 0 0 30px rgba(255,183,0,0.4); }
+.product-card[data-cat="Filters & Service"] .placeholder { color: #34d399; text-shadow: 0 0 30px rgba(0,217,126,0.4); }
+.product-card[data-cat="Sensors"] .placeholder { color: #c084fc; text-shadow: 0 0 30px rgba(168,85,247,0.4); }
+.product-card[data-cat="Cooling System"] .placeholder { color: #22d3ee; text-shadow: 0 0 30px rgba(34,211,238,0.4); }
+.product-card[data-cat="Service Kits"] .placeholder { color: #f472b6; text-shadow: 0 0 30px rgba(236,72,153,0.4); }
+
+.product-tag { position: absolute; top: 12px; left: 12px; background: var(--brand); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; }
+.product-tag.oem { background: var(--info); }
+.product-fav { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; background: rgba(0,0,0,0.6); border-radius: 50%; display: grid; place-items: center; color: #fff; cursor: pointer; transition: background .2s, color .2s; }
+.product-fav:hover { background: var(--brand); }
+.product-fav.active { background: var(--brand); color: #fff; }
+
+.product-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+.product-cat { font-size: 11px; color: var(--brand); font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 6px; }
+.product-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; color: var(--fg); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 44px; }
+.product-desc { font-size: 12px; color: var(--muted); margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.product-meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--fg-dim); margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.product-meta .stock { color: var(--cta); font-weight: 600; }
+.product-meta .stock.low { color: var(--warning); }
+.product-meta .stock.out { color: var(--muted); }
+.product-meta .brand { color: var(--muted); }
+.product-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+.product-price { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 600; color: var(--fg); line-height: 1; }
+.product-price .cur { font-size: 13px; color: var(--muted); margin-right: 2px; }
+.btn-add { background: var(--cta); color: #001a0e; width: 40px; height: 40px; border-radius: var(--r-sm); display: grid; place-items: center; font-size: 16px; transition: background .2s, transform .15s; }
+.btn-add:hover { background: #00f08c; }
+.btn-add:active { transform: scale(0.92); }
+.btn-add.disabled { background: var(--muted-dim); cursor: not-allowed; }
+
+/* ===== Brands strip ===== */
+.brands-strip { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 36px 0; overflow: hidden; transition: background-color .3s ease; }
+.brands-strip .container { display: flex; align-items: center; gap: 60px; }
+.brands-strip .label { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--fg); text-transform: uppercase; white-space: nowrap; border-right: 1px solid var(--border); padding-right: 36px; }
+.brands-strip .label span { color: var(--brand); }
+.brands-row { display: flex; gap: 56px; animation: scrollBrands 30s linear infinite; white-space: nowrap; }
+@keyframes scrollBrands { to { transform: translateX(-50%); } }
+.brand-item { font-family: 'Oswald', sans-serif; font-size: 26px; font-weight: 700; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; transition: color .25s; cursor: pointer; }
+.brand-item:hover { color: var(--fg); }
+
+/* ===== Features ===== */
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px 28px; transition: all .25s; }
+.feature-card:hover { border-color: var(--brand); transform: translateY(-3px); }
+.feature-card .ico { font-size: 32px; color: var(--brand); margin-bottom: 18px; }
+.feature-card h3 { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+.feature-card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+/* ===== CTA ===== */
+.cta-banner { position: relative; background: linear-gradient(120deg, rgba(230,57,70,0.92), rgba(193,18,31,0.92)), radial-gradient(circle at 20% 50%, rgba(0,0,0,0.3), transparent); border-radius: var(--r-xl); padding: 56px 60px; display: flex; justify-content: space-between; align-items: center; gap: 32px; overflow: hidden; margin: 64px 0; }
+.cta-banner::before { content: ''; position: absolute; right: -100px; top: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 60%); pointer-events: none; }
+.cta-banner h2 { font-family: 'Oswald', sans-serif; font-size: 42px; font-weight: 700; text-transform: uppercase; line-height: 1.1; margin-bottom: 10px; color: #fff; }
+.cta-banner p { color: rgba(255,255,255,0.9); font-size: 16px; max-width: 540px; }
+.cta-banner .btn-cta { background: #000; color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+.cta-banner .btn-cta:hover { background: #1a1a1a; }
+.btn-cta { background: var(--cta); color: #001a0e; padding: 16px 32px; border-radius: var(--r-md); font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; transition: transform .2s, box-shadow .2s, background .2s; box-shadow: 0 8px 24px rgba(0,217,126,0.3); }
+.btn-cta:hover { background: #00f08c; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,217,126,0.45); }
+
+/* ===== Footer ===== */
+.footer { background: var(--footer-bg); border-top: 1px solid var(--border); padding: 64px 0 24px; position: relative; z-index: 1; transition: background-color .3s ease; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+.footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--fg); margin-bottom: 18px; }
+.footer-col p { color: var(--muted); font-size: 13px; margin-bottom: 16px; line-height: 1.7; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a { color: var(--muted); font-size: 13px; transition: color .2s; }
+.footer-col ul a:hover { color: var(--brand); }
+.footer-contact div { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; color: var(--muted); font-size: 13px; }
+.footer-contact i { color: var(--brand); margin-top: 4px; }
+.footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
+.footer-bottom .pay { display: flex; gap: 8px; }
+.footer-bottom .pay i { font-size: 22px; color: var(--fg-dim); }
+
+/* ===== Buyer badge ===== */
+.buyer-badge { position: fixed; bottom: 20px; right: 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 14px 18px; display: flex; align-items: center; gap: 14px; z-index: 30; box-shadow: var(--shadow-md); max-width: 280px; transition: transform .3s, background-color .3s; }
+.buyer-badge .score { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--cta), var(--cta-dark)); color: #001a0e; display: grid; place-items: center; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+.buyer-badge .info { font-size: 12px; line-height: 1.4; }
+.buyer-badge .info b { color: var(--fg); font-size: 13px; }
+.buyer-badge .info span { color: var(--muted); display: block; margin-top: 2px; }
+.buyer-badge .stars { color: var(--warning); font-size: 10px; margin-top: 2px; }
+.buyer-badge:hover { transform: translateY(-3px); border-color: var(--cta); }
+
+/* ===== Cart drawer ===== */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 90; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.overlay.active { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 440px; max-width: 100vw; background: var(--bg); border-left: 1px solid var(--border); z-index: 100; transform: translateX(100%); transition: transform .4s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; }
+.drawer.active { transform: translateX(0); }
+.drawer-head { padding: 22px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.drawer-head h3 { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+.drawer-head h3 .count { background: var(--brand); color: #fff; font-size: 12px; padding: 2px 8px; border-radius: 100px; font-family: 'Manrope'; }
+.drawer-close { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: var(--fg-dim); transition: background .2s; }
+.drawer-close:hover { background: var(--surface); color: var(--fg); }
+.drawer-body { flex: 1; overflow-y: auto; padding: 18px 24px; }
+.cart-empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+.cart-empty i { font-size: 56px; margin-bottom: 16px; color: var(--muted-dim); }
+.cart-empty p { font-size: 15px; margin-bottom: 4px; }
+.cart-empty span { font-size: 13px; }
+.cart-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.cart-item .ci-img { width: 80px; height: 80px; background: var(--surface); border-radius: var(--r-sm); display: grid; place-items: center; overflow: hidden; }
+.cart-item .ci-img i { font-size: 28px; color: var(--muted-dim); }
+.cart-item .ci-info { min-width: 0; }
+.cart-item .ci-info .ci-cat { font-size: 10px; color: var(--brand); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 2px; }
+.cart-item .ci-info .ci-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cart-item .ci-info .ci-price { font-size: 13px; color: var(--muted); }
+.cart-item .ci-info .ci-price b { color: var(--fg); }
+.qty-ctrl { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.qty-ctrl button { width: 24px; height: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--fg); display: grid; place-items: center; font-size: 12px; }
+.qty-ctrl button:hover { background: var(--brand); border-color: var(--brand); }
+.qty-ctrl span { font-weight: 600; font-size: 13px; min-width: 24px; text-align: center; }
+.ci-remove { color: var(--muted); font-size: 16px; padding: 8px; }
+.ci-remove:hover { color: var(--brand); }
+.drawer-foot { padding: 22px 24px; border-top: 1px solid var(--border); background: var(--bg-2); }
+.cart-totals { margin-bottom: 16px; }
+.cart-totals .row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--fg-dim); }
+.cart-totals .row.total { padding-top: 12px; border-top: 1px solid var(--border); margin-top: 12px; font-size: 18px; font-weight: 700; color: var(--fg); }
+.cart-totals .row.total .price { font-family: 'Oswald', sans-serif; color: var(--brand); font-size: 24px; }
+.btn-checkout { width: 100%; background: var(--cta); color: #001a0e; padding: 16px; border-radius: var(--r-md); font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background .2s; margin-bottom: 8px; }
+.btn-checkout:hover { background: #00f08c; }
+.drawer-foot .note { text-align: center; font-size: 11px; color: var(--muted); }
+
+/* ===== Auth Modal ===== */
+.modal { position: fixed; inset: 0; z-index: 110; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal.active { display: flex; }
+.modal-bg { position: absolute; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); }
+
+.auth-card { position: relative; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-xl); width: 100%; max-width: 900px; height: 540px; display: flex; overflow: hidden; box-shadow: var(--shadow-lg); }
+.auth-brand { width: 45%; background: radial-gradient(circle at top left, #1a1a1a, #000); position: relative; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--border); }
+body.light-theme .auth-brand { background: radial-gradient(circle at top left, #fff, #e9ecef); border-right: 1px solid var(--border); }
+.auth-brand-content { position: relative; z-index: 2; }
+.auth-brand-content h2 { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 600; line-height: 1.2; margin: 24px 0 12px; text-transform: uppercase; }
+.auth-brand-content p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+.auth-brand-footer { font-size: 11px; color: var(--muted-dim); text-transform: uppercase; letter-spacing: 1px; }
+.auth-form-side { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+.auth-close { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: var(--fg-dim); transition: background .2s; z-index: 10; }
+.auth-close:hover { background: var(--surface); color: var(--fg); }
+.auth-tabs { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-radius: var(--r-md); margin-bottom: 28px; width: 100%; }
+.auth-tabs button { flex: 1; padding: 12px; border-radius: var(--r-sm); font-weight: 700; font-size: 13px; color: var(--muted); transition: all .2s; text-transform: uppercase; letter-spacing: 1px; }
+.auth-tabs button.active { background: var(--brand); color: #fff; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--fg-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.input-wrap { position: relative; }
+.input-wrap i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 14px; }
+.form-input { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--fg); padding: 13px 14px 13px 42px; border-radius: var(--r-md); font-size: 14px; transition: border-color .2s, box-shadow .2s; }
+.form-input:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(230,57,70,0.15); }
+.form-input.no-icon { padding-left: 14px; }
+textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn-submit { width: 100%; background: var(--brand); color: #fff; padding: 14px; border-radius: var(--r-md); font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; transition: background .2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 8px; }
+.btn-submit:hover { background: var(--brand-bright); }
+.admin-hint { background: rgba(230,57,70,0.08); border: 1px dashed var(--brand); border-radius: var(--r-md); padding: 12px 14px; margin-top: 16px; font-size: 12px; color: var(--fg-dim); text-align: center; }
+.admin-hint b { color: var(--brand); }
+
+/* ===== FIX: Modal card base styles (was missing — caused add/edit form to be invisible) ===== */
+.modal-card {
+  position: relative;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-card.lg { max-width: 1100px; }
+.modal-head { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.modal-head h3 { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 600; text-transform: uppercase; }
+.modal-head .sub { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.modal-close { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; color: var(--fg-dim); transition: background .2s; }
+.modal-close:hover { background: var(--surface); color: var(--fg); }
+.modal-body { padding: 28px; }
+
+/* ===== Admin ===== */
+.admin-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 18px; }
+.stat-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.stat-card .value { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 700; color: var(--fg); }
+.stat-card .delta { font-size: 12px; color: var(--cta); margin-top: 4px; }
+.admin-tabs { display: flex; gap: 4px; background: var(--surface); padding: 4px; border-radius: var(--r-md); margin-bottom: 20px; width: fit-content; }
+.admin-tabs button { padding: 9px 18px; border-radius: var(--r-sm); font-weight: 600; font-size: 13px; color: var(--muted); transition: all .2s; }
+.admin-tabs button.active { background: var(--brand); color: #fff; }
+.admin-table { width: 100%; border-collapse: collapse; }
+.admin-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.admin-table td { padding: 12px; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--fg-dim); }
+.admin-table tr:hover td { background: var(--surface); }
+.admin-table .prod-cell { display: flex; align-items: center; gap: 10px; }
+.admin-table .prod-cell img { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; background: var(--surface); }
+.admin-table .prod-cell .pn { color: var(--fg); font-weight: 600; }
+.admin-table .actions { display: flex; gap: 6px; }
+.admin-table .actions button { width: 30px; height: 30px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--fg-dim); display: grid; place-items: center; font-size: 12px; transition: all .2s; }
+.admin-table .actions button:hover { background: var(--brand); border-color: var(--brand); color: #fff; }
+.admin-table .actions button.del:hover { background: #c1121f; border-color: #c1121f; }
+.section-tool { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 12px; }
+.tool-title { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; text-transform: uppercase; }
+.btn-add-prod { background: var(--cta); color: #001a0e; padding: 9px 16px; border-radius: var(--r-sm); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 6px; }
+.btn-add-prod:hover { background: #00f08c; }
+
+/* ===== Product detail ===== */
+.pd-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.pd-img { aspect-ratio: 1; background: var(--surface); border-radius: var(--r-lg); overflow: hidden; display: grid; place-items: center; border: 1px solid var(--border); }
+.pd-img img { width: 100%; height: 100%; object-fit: cover; }
+.pd-img .placeholder { font-size: 100px; color: var(--muted-dim); }
+.pd-info .pd-cat { color: var(--brand); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+.pd-info h2 { font-family: 'Oswald', sans-serif; font-size: 28px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; line-height: 1.2; }
+.pd-info .pd-desc { color: var(--fg-dim); font-size: 14px; margin-bottom: 20px; line-height: 1.7; }
+.pd-specs { background: var(--surface); border-radius: var(--r-md); padding: 16px; margin-bottom: 20px; }
+.pd-specs .spec { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; border-bottom: 1px solid var(--border); }
+.pd-specs .spec:last-child { border-bottom: none; }
+.pd-specs .spec .k { color: var(--muted); }
+.pd-specs .spec .v { color: var(--fg); font-weight: 600; }
+.pd-price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 16px; background: var(--surface); border-radius: var(--r-md); }
+.pd-price-row .price { font-family: 'Oswald', sans-serif; font-size: 32px; font-weight: 700; color: var(--fg); }
+.pd-price-row .price .cur { font-size: 16px; color: var(--muted); }
+.pd-buy { display: flex; gap: 10px; }
+.pd-buy .btn-cta { flex: 1; justify-content: center; }
+
+/* ===== Toast ===== */
+.toast-wrap { position: fixed; top: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--cta); padding: 14px 18px; border-radius: var(--r-md); display: flex; align-items: center; gap: 12px; min-width: 280px; box-shadow: var(--shadow-md); animation: toastIn .35s cubic-bezier(.4,0,.2,1); font-size: 13px; color: var(--fg); }
+.toast.err { border-left-color: var(--brand); }
+.toast.warn { border-left-color: var(--warning); }
+.toast i { font-size: 16px; color: var(--cta); }
+.toast.err i { color: var(--brand); }
+.toast.warn i { color: var(--warning); }
+.toast .msg { color: var(--fg); flex: 1; }
+@keyframes toastIn { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.toast.out { animation: toastOut .3s forwards; }
+@keyframes toastOut { to { transform: translateX(120%); opacity: 0; } }
+
+/* ===== Responsive ===== */
+@media (max-width: 1100px) {
+  .cat-grid, .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .features { grid-template-columns: 1fr; }
+  .admin-stats { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-strip .container { grid-template-columns: repeat(2, 1fr); }
+  .auth-brand { display: none; }
+  .auth-card { max-width: 460px; height: auto; }
+}
+@media (max-width: 760px) {
+  .container { padding: 0 18px; }
+  .header .container { gap: 12px; height: 64px; }
+  .search-bar { display: none; }
+  .topbar-left .hide-m { display: none; }
+  .hero { height: 360px; }
+  .cta-banner { flex-direction: column; padding: 32px 24px; text-align: center; }
+  .cta-banner h2 { font-size: 28px; }
+  .cat-grid, .products-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .pd-grid { grid-template-columns: 1fr; }
+  .drawer { width: 100vw; }
+  .buyer-badge { bottom: 12px; right: 12px; padding: 10px 12px; max-width: 240px; }
+  .buyer-badge .score { width: 40px; height: 40px; font-size: 14px; }
+  .section-head h2 { font-size: 28px; }
+  .section { padding: 48px 0; }
+  .btn-auth span { display: none; }
+}
+
+.hidden { display: none !important; }
+.fade-in { animation: fadeUp .5s ease both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- Top utility bar -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <span class="hide-m"><i class="fa-solid fa-phone"></i>+49 2151 9028-0</span>
+      <span class="hide-m"><i class="fa-solid fa-envelope"></i>sales@limburg-te.de</span>
+      <span><i class="fa-solid fa-truck-fast"></i>Free shipping from €250</span>
+    </div>
+    <div class="topbar-right">
+      <a href="#" onclick="openAuth('login');return false;">Track Order</a>
+      <span class="sep">|</span>
+      <a href="#" onclick="openAuth('login');return false;">Support</a>
+      <span class="sep">|</span>
+      <a href="#">EN / EUR</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="logo-lte" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-symbol">LTE</div>
+      <div class="logo-text-right">
+        <div class="logo-main-text">LIMBURG</div>
+        <div class="logo-sub-text">
+          <span class="logo-trade">TRADE</span>
+          <span class="logo-amp">&</span>
+          <span class="logo-eng">ENGINEERING</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input id="searchInput" type="text" placeholder="Search spare parts or SKU (e.g. DUNGS, 2614B072)..." oninput="onSearch()">
+      <button onclick="onSearch()"><i class="fa-solid fa-arrow-right"></i>Search</button>
+    </div>
+
+    <div class="header-actions">
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>
+      </button>
+      <button class="icon-btn" id="favBtn" onclick="openFavorites()" title="Wishlist">
+        <i class="fa-regular fa-heart"></i>
+        <span class="badge" id="favCount">0</span>
+      </button>
+      <button class="icon-btn" onclick="openCart()" title="Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge" id="cartCount">0</span>
+      </button>
+      <!-- Login & Register Buttons -->
+      <button class="btn-auth" id="loginBtn" onclick="handleLoginClick()">
+        <i class="fa-solid fa-user"></i> <span>Login</span>
+      </button>
+      <button class="btn-auth primary" id="registerBtn" onclick="openAuth('register')">
+        <i class="fa-solid fa-user-plus"></i> <span>Register</span>
+      </button>
+      <!-- User dropdown menu (shown when logged in) -->
+      <div class="user-menu-wrap" id="userMenuWrap" style="display:none;">
+        <button class="btn-auth primary" id="userMenuBtn" onclick="toggleUserMenu()">
+          <i class="fa-solid fa-user-check"></i> <span id="userMenuName">Admin</span>
+          <i class="fa-solid fa-chevron-down" style="font-size:10px;margin-left:4px;"></i>
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="ud-head">
+            <div class="ud-name" id="udName">Administrator</div>
+            <div class="ud-email" id="udEmail">admin@limburg-te.de</div>
+          </div>
+          <button id="menuAdminBtn" onclick="openAdmin();closeUserMenu();" style="display:none;">
+            <i class="fa-solid fa-screwdriver-wrench"></i> Admin Dashboard
+          </button>
+          <button onclick="closeUserMenu();">
+            <i class="fa-solid fa-bag-shopping"></i> My Orders
+          </button>
+          <button onclick="closeUserMenu();">
+            <i class="fa-solid fa-gear"></i> Account Settings
+          </button>
+          <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Category nav -->
+<nav class="catnav">
+  <div class="container" id="catNav">
+    <a href="#" class="active" data-cat="all"><i class="fa-solid fa-grip"></i>All Products</a>
+    <a href="#" data-cat="Gas Control"><i class="fa-solid fa-fire-flame-simple"></i>Gas Control</a>
+    <a href="#" data-cat="Engine Technology"><i class="fa-solid fa-gears"></i>Engine Technology</a>
+    <a href="#" data-cat="Electrical & Ignition"><i class="fa-solid fa-bolt"></i>Electrical & Ignition</a>
+    <a href="#" data-cat="Filters & Service"><i class="fa-solid fa-filter"></i>Filters & Service</a>
+    <a href="#" data-cat="Sensors"><i class="fa-solid fa-gauge-high"></i>Sensors</a>
+    <a href="#" data-cat="Cooling System"><i class="fa-solid fa-snowflake"></i>Cooling System</a>
+    <a href="#" data-cat="Service Kits"><i class="fa-solid fa-toolbox"></i>Service Kits</a>
+  </div>
+</nav>
+
+<!-- Hero slider -->
+<section class="hero">
+  <div class="hero-track" id="heroTrack"></div>
+  <div class="hero-controls">
+    <div class="hero-dots" id="heroDots"></div>
+    <div class="hero-arrows">
+      <button onclick="prevSlide()" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button>
+      <button onclick="nextSlide()" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Trust strip -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-item"><i class="fa-solid fa-shield-halved"></i><div><div class="t-title">Buyer Protection</div><div class="t-sub">Secure ordering & returns</div></div></div>
+    <div class="trust-item"><i class="fa-solid fa-certificate"></i><div><div class="t-title">Genuine OEM Parts</div><div class="t-sub">Certified originals only</div></div></div>
+    <div class="trust-item"><i class="fa-solid fa-truck-fast"></i><div><div class="t-title">Fast Dispatch</div><div class="t-sub">Same-day before 14:00</div></div></div>
+    <div class="trust-item"><i class="fa-solid fa-headset"></i><div><div class="t-title">Expert Support</div><div class="t-sub">Engineers on call 24/7</div></div></div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="label">Browse Catalog</div>
+        <h2>Spare Parts Categories</h2>
+        <div class="sub">From precision gas control to engine components — every part engineered for continuous duty in CHP and industrial energy systems.</div>
+      </div>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- Featured products -->
+<section class="section" style="padding-top:0;" id="productsSection">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="label">Featured Inventory</div>
+        <h2>High-Demand Spare Parts</h2>
+      </div>
+    </div>
+    <div class="filter-bar">
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="Gas Control">Gas Control</button>
+        <button class="chip" data-filter="Engine Technology">Engine</button>
+        <button class="chip" data-filter="Electrical & Ignition">Ignition</button>
+        <button class="chip" data-filter="Filters & Service">Filters</button>
+        <button class="chip" data-filter="Sensors">Sensors</button>
+        <button class="chip" data-filter="Cooling System">Cooling</button>
+        <button class="chip" data-filter="Service Kits">Kits</button>
+      </div>
+      <div class="filter-sort">
+        <span>Sort:</span>
+        <select id="sortSelect" onchange="renderProducts()">
+          <option value="featured">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name">Name A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</section>
+
+<!-- Brands strip -->
+<section class="brands-strip">
+  <div class="container">
+    <div class="label">OEM <span>Partners</span></div>
+    <div class="brands-row">
+      <span class="brand-item">DUNGS</span><span class="brand-item">PERKINS</span><span class="brand-item">MWM</span><span class="brand-item">JENBACHER</span><span class="brand-item">HONEYWELL</span><span class="brand-item">BOSCH</span><span class="brand-item">NGK</span><span class="brand-item">FEDERAL MOGUL</span><span class="brand-item">MAHLE</span>
+      <span class="brand-item">DUNGS</span><span class="brand-item">PERKINS</span><span class="brand-item">MWM</span><span class="brand-item">JENBACHER</span><span class="brand-item">HONEYWELL</span><span class="brand-item">BOSCH</span><span class="brand-item">NGK</span><span class="brand-item">FEDERAL MOGUL</span><span class="brand-item">MAHLE</span>
+    </div>
+  </div>
+</section>
+
+<!-- Why us -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="label">Why Limburg Trade & Engineering</div>
+        <h2>Engineered Reliability</h2>
+        <div class="sub">For over two decades we've supplied CHP operators, maintenance teams, and energy contractors across Europe with the parts that keep plants running.</div>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature-card"><div class="ico"><i class="fa-solid fa-microscope"></i></div><h3>Technical Expertise</h3><p>Our engineers know every component inside out — from DUNGS gas trains to Perkins cylinder heads. We help you spec the right part the first time, every time.</p></div>
+      <div class="feature-card"><div class="ico"><i class="fa-solid fa-warehouse"></i></div><h3>Deep Inventory</h3><p>Over 18,000 SKUs in stock at our logistics hub. Critical spares ship same-day, with full traceability and OEM certificates of conformity.</p></div>
+      <div class="feature-card"><div class="ico"><i class="fa-solid fa-stopwatch"></i></div><h3>Long Service Life</h3><p>Genuine parts mean longer service intervals, fewer unplanned outages, and a lower total cost of ownership across the lifetime of your plant.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-banner">
+      <div>
+        <h2>Need a part not listed?</h2>
+        <p>Send us your engine serial number or part reference — our sourcing team will locate it within 24 hours.</p>
+      </div>
+      <button class="btn-cta" onclick="toast('Request sent — our team will contact you shortly.')">Request a Quote <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo-lte" style="margin-bottom: 18px;">
+          <div class="logo-symbol">LTE</div>
+          <div class="logo-text-right">
+            <div class="logo-main-text">LIMBURG</div>
+            <div class="logo-sub-text"><span class="logo-trade">TRADE</span><span class="logo-amp">&</span><span class="logo-eng">ENGINEERING</span></div>
+          </div>
+        </div>
+        <p>Limburg Trade & Engineering GmbH — Your certified partner for industrial spare parts, gas control systems, and CHP service components across Europe.</p>
+        <div class="footer-contact">
+          <div><i class="fa-solid fa-location-dot"></i> Industriestraße 14, 47807 Krefeld, Germany</div>
+          <div><i class="fa-solid fa-phone"></i> +49 2151 9028-0</div>
+          <div><i class="fa-solid fa-envelope"></i> sales@limburg-te.de</div>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="#">Gas Control</a></li><li><a href="#">Engine Parts</a></li><li><a href="#">Ignition Systems</a></li><li><a href="#">Filters</a></li><li><a href="#">Sensors</a></li><li><a href="#">Service Kits</a></li></ul></div>
+      <div class="footer-col"><h4>Brands</h4><ul><li><a href="#">DUNGS</a></li><li><a href="#">Perkins</a></li><li><a href="#">MWM</a></li><li><a href="#">Jenbacher</a></li><li><a href="#">Honeywell</a></li><li><a href="#">Bosch</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Quality & Certs</a></li><li><a href="#">Careers</a></li><li><a href="#">News</a></li><li><a href="#">Contact</a></li></ul></div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe for stock updates, technical bulletins and OEM announcements.</p>
+        <div class="search-bar" style="max-width:none;">
+          <i class="fa-solid fa-envelope"></i>
+          <input type="email" placeholder="your@email.com" id="newsletterInput">
+          <button onclick="subscribeNews()">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Limburg Trade & Engineering GmbH — All rights reserved.</div>
+      <div class="pay"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-paypal"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-bitcoin"></i></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Buyer badge -->
+<div class="buyer-badge" title="Buyer Protection">
+  <div class="score">4.64</div>
+  <div class="info"><b>Excellent</b><div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div><span>2,847 verified reviews</span></div>
+</div>
+
+<!-- Cart drawer -->
+<div class="overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-head"><h3><i class="fa-solid fa-cart-shopping"></i> Your Cart <span class="count" id="cartCountHead">0</span></h3><button class="drawer-close" onclick="closeCart()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot" id="cartFoot"></div>
+</aside>
+
+<!-- Auth Modal -->
+<div class="modal" id="authModal">
+  <div class="modal-bg" onclick="closeAuth()"></div>
+  <div class="auth-card">
+    <div class="auth-brand">
+      <div class="auth-brand-content">
+        <div class="logo-lte" style="margin-bottom: 24px;">
+          <div class="logo-symbol">LTE</div>
+          <div class="logo-text-right">
+            <div class="logo-main-text">LIMBURG</div>
+            <div class="logo-sub-text"><span class="logo-trade">TRADE</span><span class="logo-amp">&</span><span class="logo-eng">ENGINEERING</span></div>
+          </div>
+        </div>
+        <h2>Welcome to the<br>Industrial Cloud</h2>
+        <p>Access your spare parts inventory, track CHP orders, and manage your energy systems securely.</p>
+      </div>
+      <div class="auth-brand-footer">© 2026 Limburg Trade & Engineering</div>
+    </div>
+    <div class="auth-form-side">
+      <button class="auth-close" onclick="closeAuth()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="auth-tabs">
+        <button id="tabLogin" class="active" onclick="switchAuth('login')">Login</button>
+        <button id="tabRegister" onclick="switchAuth('register')">Register</button>
+      </div>
+      <form id="loginForm" onsubmit="doLogin(event)">
+        <div class="form-group"><label>Username or Email</label><div class="input-wrap"><i class="fa-solid fa-user"></i><input class="form-input" type="text" id="loginUser" placeholder="admin" required></div></div>
+        <div class="form-group"><label>Password</label><div class="input-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="loginPass" placeholder="••••••••" required></div></div>
+        <button type="submit" class="btn-submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In</button>
+      </form>
+      <form id="registerForm" class="hidden" onsubmit="doRegister(event)">
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><div class="input-wrap"><i class="fa-solid fa-user"></i><input class="form-input" type="text" id="regFirst" required></div></div>
+          <div class="form-group"><label>Last Name</label><div class="input-wrap"><i class="fa-solid fa-user"></i><input class="form-input" type="text" id="regLast" required></div></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><div class="input-wrap"><i class="fa-solid fa-envelope"></i><input class="form-input" type="email" id="regEmail" required></div></div>
+        <div class="form-group"><label>Password</label><div class="input-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="regPass" required></div></div>
+        <button type="submit" class="btn-submit"><i class="fa-solid fa-user-plus"></i> Create Account</button>
+      </form>
+      <div class="admin-hint"><b>Demo Admin Access:</b> user <code>admin</code> · pass <code>limburg2026</code></div>
+    </div>
+  </div>
+</div>
+
+<!-- Admin dashboard modal -->
+<div class="modal" id="adminModal">
+  <div class="modal-bg" onclick="closeAdmin()"></div>
+  <div class="modal-card lg">
+    <div class="modal-head">
+      <div><h3><i class="fa-solid fa-screwdriver-wrench"></i> Admin Dashboard</h3><div class="sub">Manage products, orders, and inventory.</div></div>
+      <button class="modal-close" onclick="closeAdmin()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="admin-stats" id="adminStats"></div>
+      <div class="admin-tabs">
+        <button class="active" data-atab="products" onclick="switchAdminTab('products')">Products</button>
+        <button data-atab="orders" onclick="switchAdminTab('orders')">Orders</button>
+        <button data-atab="users" onclick="switchAdminTab('users')">Users</button>
+      </div>
+      <div id="adminProducts">
+        <div class="section-tool">
+          <div class="tool-title">Product Inventory <span id="prodCount" style="color:var(--muted);font-size:14px;font-family:Manrope;"></span></div>
+          <button class="btn-add-prod" onclick="openProductForm()"><i class="fa-solid fa-plus"></i> Add Product</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Product</th><th>Category</th><th>Brand</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+            <tbody id="adminProdBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="adminOrders" class="hidden">
+        <div class="section-tool"><div class="tool-title">Customer Orders</div></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Order #</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="adminOrdersBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="adminUsers" class="hidden">
+        <div class="section-tool"><div class="tool-title">Registered Users</div></div>
+        <div style="overflow-x:auto;">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Joined</th></tr></thead>
+            <tbody id="adminUsersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product form modal — FIXED: now has proper .modal-card styling -->
+<div class="modal" id="productFormModal">
+  <div class="modal-bg" onclick="closeProductForm()"></div>
+  <div class="modal-card" style="max-width: 520px;">
+    <div class="modal-head">
+      <div><h3 id="prodFormTitle">Add Product</h3><div class="sub">Fill in the product details below.</div></div>
+      <button class="modal-close" onclick="closeProductForm()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <input type="hidden" id="prodId">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input class="form-input no-icon" type="text" id="prodName" required placeholder="e.g. DUNGS Gas Valve VGD">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-input no-icon" id="prodDesc" placeholder="Brief product description..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select class="form-input no-icon" id="prodCat" required>
+              <option value="Gas Control">Gas Control</option>
+              <option value="Engine Technology">Engine Technology</option>
+              <option value="Electrical & Ignition">Electrical & Ignition</option>
+              <option value="Filters & Service">Filters & Service</option>
+              <option value="Sensors">Sensors</option>
+              <option value="Cooling System">Cooling System</option>
+              <option value="Service Kits">Service Kits</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Brand</label>
+            <input class="form-input no-icon" type="text" id="prodBrand" required placeholder="e.g. DUNGS">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Price (EUR)</label>
+            <input class="form-input no-icon" type="number" step="0.01" id="prodPrice" required placeholder="1250.00">
+          </div>
+          <div class="form-group">
+            <label>Stock Qty</label>
+            <input class="form-input no-icon" type="number" id="prodStock" required placeholder="12">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Image URL (optional)</label>
+          <input class="form-input no-icon" type="url" id="prodImage" placeholder="https://...">
+        </div>
+        <button type="submit" class="btn-submit"><i class="fa-solid fa-floppy-disk"></i> Save Product</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Product detail modal -->
+<div class="modal" id="productDetailModal">
+  <div class="modal-bg" onclick="closeProductDetail()"></div>
+  <div class="modal-card lg">
+    <div class="modal-head">
+      <div><h3>Product Details</h3></div>
+      <button class="modal-close" onclick="closeProductDetail()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="productDetailBody"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+/* =========================================
+   LIMBURG TRADE & ENGINEERING — Platform
+   Admin credentials: admin / limburg2026
+========================================= */
+
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'limburg2026';
+
+const K = {
+  products: 'lte_products', cart: 'lte_cart', users: 'lte_users',
+  currentUser: 'lte_currentUser', orders: 'lte_orders',
+  favorites: 'lte_favorites', theme: 'lte_theme'
+};
+
+const SEED_PRODUCTS = [
+  { id: 'p1', name: 'DUNGS Gas Valve VGD 40.065 DN65', cat: 'Gas Control', brand: 'DUNGS', price: 1250, stock: 8, img: 'https://z-cdn-media.chatglm.cn/files/5551ba4d-06cd-4e3a-ba9d-1de7620caa51.png?auth_key=1885085681-7b2ca4e48633405795b53e7b317b75b3-0-5bb1fc5e4bc8dac710fac757bff39eee', desc: 'Motorized gas safety shut-off valve for CHP gas trains. DN65, flanged, with integrated position indicator.', tag: 'OEM', sku: 'DG-VGD40-065' },
+  { id: 'p2', name: 'Perkins Oil Filter Element 2614B072', cat: 'Filters & Service', brand: 'Perkins', price: 45, stock: 142, img: '', desc: 'Genuine Perkins spin-on oil filter for 1100 and 1300 series engines. High-efficiency filtration, 25 micron rating.', tag: '', sku: 'PE-2614B072' },
+  { id: 'p3', name: 'NGK Spark Plug BPMR7A (Pack of 4)', cat: 'Electrical & Ignition', brand: 'NGK', price: 68, stock: 76, img: '', desc: 'Resistor-type spark plug for gas engines. Platinum-tipped electrode for extended service life.', tag: '', sku: 'NGK-BPMR7A-4' },
+  { id: 'p4', name: 'Honeywell Pressure Switch LGW-A3', cat: 'Gas Control', brand: 'Honeywell', price: 185, stock: 24, img: '', desc: 'Adjustable gas pressure switch for monitoring overpressure. Range 20–200 mbar, IP54 rated, UL/DVGW approved.', tag: '', sku: 'HW-LGWA3' },
+  { id: 'p5', name: 'MWM Ignition Coil TCG2016', cat: 'Electrical & Ignition', brand: 'MWM', price: 420, stock: 12, img: '', desc: 'OEM ignition coil for MWM TCG2016 gas engines. Direct replacement, includes high-tension lead and boot.', tag: 'OEM', sku: 'MW-IC-TCG2016' },
+  { id: 'p6', name: 'Air Filter Element HD Perkins 1406', cat: 'Filters & Service', brand: 'Perkins', price: 89, stock: 56, img: '', desc: 'Heavy-duty air filter element for Perkins 1406 series. Radial seal design, high dust-holding capacity.', tag: '', sku: 'PE-AF-1406' },
+  { id: 'p7', name: 'Bosch Lambda Sensor LSU 4.9', cat: 'Sensors', brand: 'Bosch', price: 235, stock: 38, img: '', desc: 'Wideband oxygen sensor for precise air-fuel ratio control in gas engines. 5-wire, planar element.', tag: '', sku: 'BS-LSU49' },
+  { id: 'p8', name: 'Coolant Pump Perkins 1104', cat: 'Cooling System', brand: 'Perkins', price: 580, stock: 6, img: '', desc: 'Engine-driven coolant pump for Perkins 1104 series. Cast iron impeller, includes gasket set.', tag: 'OEM', sku: 'PE-CP-1104' },
+  { id: 'p9', name: 'Crankshaft Front Seal Perkins 1106', cat: 'Engine Technology', brand: 'Perkins', price: 62, stock: 84, img: '', desc: 'Front crankshaft oil seal for Perkins 1106 series. Viton material, 85mm shaft diameter.', tag: '', sku: 'PE-CS-1106F' },
+  { id: 'p10', name: 'Cylinder Head Gasket Set MWM TCG2020', cat: 'Engine Technology', brand: 'MWM', price: 890, stock: 4, img: '', desc: 'Complete cylinder head gasket set for MWM TCG2020 V12 gas engine. Includes all seals and O-rings.', tag: 'OEM', sku: 'MW-CHG-2020' },
+  { id: 'p11', name: 'Bosch Temperature Sensor NTC M12', cat: 'Sensors', brand: 'Bosch', price: 38, stock: 124, img: '', desc: 'NTC temperature sensor for coolant and oil monitoring. M12×1.5 thread, -40 to +150°C range.', tag: '', sku: 'BS-NTC-M12' },
+  { id: 'p12', name: 'CHP Service Kit 4000h Perkins 1100', cat: 'Service Kits', brand: 'Perkins', price: 1890, stock: 3, img: '', desc: 'Complete 4000-hour service kit for Perkins 1100 series CHP. Includes all filters, belts, spark plugs, gaskets.', tag: 'OEM', sku: 'PE-KIT-1100-4K' }
+];
+
+let state = {
+  products: [], cart: [], users: [], currentUser: null, orders: [], favorites: [],
+  filter: 'all', sort: 'featured', search: ''
+};
+
+function load(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch (e) { return def; } }
+function save(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
+function initState() {
+  state.products = load(K.products, null);
+  if (!state.products) { state.products = SEED_PRODUCTS; save(K.products, state.products); }
+  state.cart = load(K.cart, []);
+  state.users = load(K.users, []);
+  state.currentUser = load(K.currentUser, null);
+  state.orders = load(K.orders, []);
+  state.favorites = load(K.favorites, []);
+}
+
+function toast(msg, type = 'ok') {
+  const wrap = document.getElementById('toastWrap');
+  const el = document.createElement('div');
+  el.className = 'toast ' + (type === 'err' ? 'err' : type === 'warn' ? 'warn' : '');
+  const icon = type === 'err' ? 'circle-xmark' : type === 'warn' ? 'triangle-exclamation' : 'circle-check';
+  el.innerHTML = `<i class="fa-solid fa-${icon}"></i><div class="msg">${msg}</div>`;
+  wrap.appendChild(el);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 300); }, 3000);
+}
+
+// ===== Theme =====
+function toggleTheme() {
+  document.body.classList.toggle('light-theme');
+  const isLight = document.body.classList.contains('light-theme');
+  save(K.theme, isLight ? 'light' : 'dark');
+  document.getElementById('themeIcon').className = isLight ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+}
+function initTheme() {
+  const savedTheme = load(K.theme, 'dark');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+    document.getElementById('themeIcon').className = 'fa-solid fa-sun';
+  }
+}
+
+// ===== Hero slider =====
+const slides = [
+  { img: 'https://z-cdn-media.chatglm.cn/files/5551ba4d-06cd-4e3a-ba9d-1de7620caa51.png?auth_key=1885085681-7b2ca4e48633405795b53e7b317b75b3-0-5bb1fc5e4bc8dac710fac757bff39eee' },
+  { img: 'https://z-cdn-media.chatglm.cn/files/eb1f0ff5-08e4-4ed1-ab04-15c67034ca82.png?auth_key=1885087137-e5c3dd59469942a2a04c6cf0a906ad2a-0-ecb39750326c86bea5717ee0fdde4d46' },
+  { img: 'https://z-cdn-media.chatglm.cn/files/9135ead3-3d1b-4473-90a3-8edfc9ab5140.png?auth_key=1885085681-b104ef97b2744cdb8abd7bf5a7d2731b-0-3bbea7e82ebbf1591eb84dc37afeb96a' }
+];
+let currentSlide = 0, slideTimer = null;
+
+function renderHero() {
+  const track = document.getElementById('heroTrack');
+  const dots = document.getElementById('heroDots');
+  track.innerHTML = slides.map((s, i) => `<div class="slide ${i === 0 ? 'active' : ''}"><div class="slide-bg" style="background-image:url('${s.img}');"></div><div class="slide-overlay"></div></div>`).join('');
+  dots.innerHTML = slides.map((_, i) => `<div class="hero-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></div>`).join('');
+}
+function goToSlide(i) {
+  currentSlide = (i + slides.length) % slides.length;
+  document.getElementById('heroTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+  document.querySelectorAll('.slide').forEach((s, idx) => s.classList.toggle('active', idx === currentSlide));
+  document.querySelectorAll('.hero-dot').forEach((d, idx) => { d.classList.remove('active'); if (idx === currentSlide) { void d.offsetWidth; d.classList.add('active'); } });
+  resetSlideTimer();
+}
+function nextSlide() { goToSlide(currentSlide + 1); }
+function prevSlide() { goToSlide(currentSlide - 1); }
+function resetSlideTimer() { if (slideTimer) clearInterval(slideTimer); slideTimer = setInterval(() => nextSlide(), 4000); }
+
+// ===== Categories =====
+const CATS = [
+  { name: 'Gas Control', icon: 'fire-flame-simple', desc: 'Valves, regulators & safety trains' },
+  { name: 'Engine Technology', icon: 'gears', desc: 'Pistons, gaskets, crankshafts & heads' },
+  { name: 'Electrical & Ignition', icon: 'bolt', desc: 'Coils, plugs, chargers & controls' },
+  { name: 'Filters & Service', icon: 'filter', desc: 'Oil, air, fuel & coolant filters' },
+  { name: 'Sensors', icon: 'gauge-high', desc: 'Lambda, temp, pressure & position' },
+  { name: 'Cooling System', icon: 'snowflake', desc: 'Pumps, heat exchangers & thermostats' },
+  { name: 'Service Kits', icon: 'toolbox', desc: 'Bundled maintenance packages' },
+  { name: 'Brands', icon: 'certificate', desc: 'Shop parts by OEM manufacturer' }
+];
+
+function renderCats() {
+  const grid = document.getElementById('catGrid');
+  grid.innerHTML = CATS.map(c => {
+    const count = c.name === 'Brands' ? '8 OEMs' : `${state.products.filter(p => p.cat === c.name).length} parts`;
+    return `<div class="cat-card" onclick="${c.name === 'Brands' ? "document.querySelector('.brands-strip').scrollIntoView({behavior:'smooth'})" : `setFilter('${c.name}');scrollToProducts();`}"><div class="ico"><i class="fa-solid fa-${c.icon}"></i></div><h3>${c.name}</h3><p>${c.desc}</p><div class="meta"><span>${count}</span><span class="arrow"><i class="fa-solid fa-arrow-right"></i></span></div></div>`;
+  }).join('');
+}
+
+// ===== Products =====
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  let list = [...state.products];
+  if (state.filter !== 'all') list = list.filter(p => p.cat === state.filter);
+  if (state.search.trim()) {
+    const q = state.search.toLowerCase();
+    list = list.filter(p => p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q) || (p.sku && p.sku.toLowerCase().includes(q)));
+  }
+  state.sort = document.getElementById('sortSelect').value;
+  switch (state.sort) {
+    case 'price-asc': list.sort((a, b) => a.price - b.price); break;
+    case 'price-desc': list.sort((a, b) => b.price - a.price); break;
+    case 'name': list.sort((a, b) => a.name.localeCompare(b.name)); break;
+  }
+  if (list.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--muted);"><i class="fa-solid fa-magnifying-glass" style="font-size:48px;margin-bottom:14px;color:var(--muted-dim);"></i><p style="font-size:16px;margin-bottom:4px;">No parts found</p><span style="font-size:13px;">Try a different keyword or category.</span></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(p => {
+    const stockClass = p.stock === 0 ? 'out' : p.stock < 6 ? 'low' : '';
+    const stockText = p.stock === 0 ? 'Out of stock' : p.stock < 6 ? `Only ${p.stock} left` : 'In stock';
+    const isFav = state.favorites.includes(p.id);
+    const imgHtml = p.img
+      ? `<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=&quot;fa-solid fa-gear placeholder&quot;></i>';">`
+      : `<i class="fa-solid fa-gear placeholder"></i>`;
+    const tagHtml = p.tag ? `<div class="product-tag ${p.tag.toLowerCase()}">${p.tag}</div>` : '';
+    return `<div class="product-card fade-in" data-cat="${p.cat}" onclick="openProductDetail('${p.id}')">
+      <div class="product-img">${imgHtml}${tagHtml}
+        <div class="product-fav ${isFav ? 'active' : ''}" onclick="event.stopPropagation();toggleFav('${p.id}')"><i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i></div>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc || ''}</div>
+        <div class="product-meta"><span class="stock ${stockClass}"><i class="fa-solid fa-circle" style="font-size:6px;"></i> ${stockText}</span><span class="brand">${p.brand}</span></div>
+        <div class="product-foot">
+          <div class="product-price"><span class="cur">€</span>${p.price.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+          <button class="btn-add ${p.stock === 0 ? 'disabled' : ''}" onclick="event.stopPropagation();handleAddToCart('${p.id}')" ${p.stock === 0 ? 'disabled' : ''} title="Add to cart"><i class="fa-solid fa-cart-plus"></i></button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setFilter(cat) {
+  state.filter = cat;
+  state.search = '';
+  document.getElementById('searchInput').value = '';
+  document.querySelectorAll('#filterChips .chip').forEach(c => c.classList.toggle('active', c.dataset.filter === cat));
+  document.querySelectorAll('#catNav a').forEach(a => a.classList.toggle('active', a.dataset.cat === cat));
+  renderProducts();
+}
+function scrollToProducts() { document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+
+function onSearch() {
+  state.search = document.getElementById('searchInput').value.trim().toLowerCase();
+  state.filter = 'all';
+  document.querySelectorAll('#filterChips .chip').forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+  document.querySelectorAll('#catNav a').forEach(a => a.classList.toggle('active', a.dataset.cat === 'all'));
+  renderProducts();
+  if (state.search) { setTimeout(() => { document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100); }
+}
+
+// ===== Cart =====
+function handleAddToCart(id) {
+  if (!state.currentUser) { openAuth('login'); toast('Please log in or register to add items to your cart', 'warn'); return; }
+  addToCart(id);
+}
+function addToCart(id, qty = 1) {
+  const p = state.products.find(x => x.id === id);
+  if (!p) return;
+  if (p.stock === 0) { toast('Product out of stock', 'err'); return; }
+  const item = state.cart.find(x => x.id === id);
+  if (item) { if (item.qty + qty > p.stock) { toast(`Only ${p.stock} units available`, 'warn'); return; } item.qty += qty; }
+  else { state.cart.push({ id, qty, name: p.name, price: p.price, img: p.img, cat: p.cat, brand: p.brand, stock: p.stock }); }
+  save(K.cart, state.cart); updateCartUI(); toast(`${p.name.substring(0, 30)}... added to cart`);
+}
+function removeFromCart(id) { state.cart = state.cart.filter(x => x.id !== id); save(K.cart, state.cart); updateCartUI(); }
+function changeQty(id, delta) {
+  const item = state.cart.find(x => x.id === id);
+  if (!item) return;
+  const newQty = item.qty + delta;
+  if (newQty <= 0) { removeFromCart(id); return; }
+  if (newQty > item.stock) { toast(`Only ${item.stock} units available`, 'warn'); return; }
+  item.qty = newQty; save(K.cart, state.cart); updateCartUI();
+}
+function cartTotal() { return state.cart.reduce((s, x) => s + x.price * x.qty, 0); }
+
+function updateCartUI() {
+  const count = state.cart.reduce((s, x) => s + x.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartCountHead').textContent = count;
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if (state.cart.length === 0) {
+    body.innerHTML = `<div class="cart-empty"><i class="fa-solid fa-cart-shopping"></i><p>Your cart is empty</p><span>Browse our catalog to add parts.</span></div>`;
+    foot.innerHTML = ''; return;
+  }
+  body.innerHTML = state.cart.map(item => `<div class="cart-item">
+    <div class="ci-img">${item.img ? `<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=&quot;fa-solid fa-gear&quot;></i>';">` : '<i class="fa-solid fa-gear"></i>'}</div>
+    <div class="ci-info"><div class="ci-cat">${item.cat}</div><div class="ci-name">${item.name}</div><div class="ci-price">€${item.price.toFixed(2)} · <b>€${(item.price * item.qty).toFixed(2)}</b></div>
+      <div class="qty-ctrl"><button onclick="changeQty('${item.id}', -1)"><i class="fa-solid fa-minus"></i></button><span>${item.qty}</span><button onclick="changeQty('${item.id}', 1)"><i class="fa-solid fa-plus"></i></button></div>
+    </div><button class="ci-remove" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash"></i></button></div>`).join('');
+  const subtotal = cartTotal();
+  const shipping = subtotal >= 250 ? 0 : 14.90;
+  const tax = subtotal * 0.19;
+  const total = subtotal + shipping;
+  foot.innerHTML = `<div class="cart-totals">
+    <div class="row"><span>Subtotal (${state.cart.reduce((s, x) => s + x.qty, 0)} items)</span><span>€${subtotal.toFixed(2)}</span></div>
+    <div class="row"><span>VAT (19%)</span><span>€${tax.toFixed(2)}</span></div>
+    <div class="row"><span>Shipping</span><span>${shipping === 0 ? '<span style="color:var(--cta);">FREE</span>' : '€' + shipping.toFixed(2)}</span></div>
+    <div class="row total"><span>Total</span><span class="price">€${total.toFixed(2)}</span></div>
+  </div><button class="btn-checkout" onclick="checkout()"><i class="fa-solid fa-lock"></i> Secure Checkout</button><div class="note"><i class="fa-solid fa-shield-halved"></i> Buyer Protection · 30-day returns</div>`;
+}
+function openCart() { document.getElementById('cartOverlay').classList.add('active'); document.getElementById('cartDrawer').classList.add('active'); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('active'); document.getElementById('cartDrawer').classList.remove('active'); }
+
+function checkout() {
+  if (!state.currentUser) { closeCart(); openAuth('login'); return; }
+  if (state.cart.length === 0) return;
+  const order = { id: 'LP-' + Date.now().toString(36).toUpperCase(), user: state.currentUser.email, userName: state.currentUser.name, items: [...state.cart], total: cartTotal() + (cartTotal() >= 250 ? 0 : 14.90), status: 'Processing', date: new Date().toISOString() };
+  state.orders.unshift(order); save(K.orders, state.orders);
+  state.cart.forEach(item => { const p = state.products.find(x => x.id === item.id); if (p) p.stock = Math.max(0, p.stock - item.qty); });
+  save(K.products, state.products); state.cart = []; save(K.cart, state.cart);
+  updateCartUI(); closeCart(); renderProducts();
+  toast(`Order ${order.id} placed successfully!`);
+}
+
+// ===== Favorites =====
+function toggleFav(id) {
+  const idx = state.favorites.indexOf(id);
+  if (idx > -1) { state.favorites.splice(idx, 1); toast('Removed from wishlist'); }
+  else { state.favorites.push(id); toast('Added to wishlist'); }
+  save(K.favorites, state.favorites);
+  document.getElementById('favCount').textContent = state.favorites.length;
+  renderProducts();
+}
+function openFavorites() {
+  if (state.favorites.length === 0) { toast('Your wishlist is empty', 'warn'); return; }
+  const favProducts = state.products.filter(p => state.favorites.includes(p.id));
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = favProducts.map(p => `<div class="product-card fade-in" data-cat="${p.cat}" onclick="openProductDetail('${p.id}')">
+    <div class="product-img">${p.img ? `<img src="${p.img}" alt="${p.name}">` : '<i class="fa-solid fa-gear placeholder"></i>'}<div class="product-fav active" onclick="event.stopPropagation();toggleFav('${p.id}')"><i class="fa-solid fa-heart"></i></div></div>
+    <div class="product-body"><div class="product-cat">${p.cat}</div><div class="product-name">${p.name}</div><div class="product-meta"><span class="stock">Wishlist</span><span class="brand">${p.brand}</span></div>
+    <div class="product-foot"><div class="product-price"><span class="cur">€</span>${p.price.toFixed(2)}</div><button class="btn-add" onclick="event.stopPropagation();handleAddToCart('${p.id}')"><i class="fa-solid fa-cart-plus"></i></button></div></div></div>`).join('');
+  document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ===== Product detail =====
+function openProductDetail(id) {
+  const p = state.products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('productDetailBody').innerHTML = `<div class="pd-grid">
+    <div class="pd-img">${p.img ? `<img src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=&quot;fa-solid fa-gear placeholder&quot;></i>';">` : '<i class="fa-solid fa-gear placeholder"></i>'}</div>
+    <div class="pd-info"><div class="pd-cat">${p.cat} · ${p.brand}</div><h2>${p.name}</h2>
+      <div class="pd-desc">${p.desc || 'Premium industrial spare part engineered for continuous-duty CHP and energy applications. OEM-grade quality with full traceability.'}</div>
+      <div class="pd-specs">
+        <div class="spec"><span class="k">SKU</span><span class="v">${p.sku || p.id.toUpperCase()}</span></div>
+        <div class="spec"><span class="k">Brand</span><span class="v">${p.brand}</span></div>
+        <div class="spec"><span class="k">Category</span><span class="v">${p.cat}</span></div>
+        <div class="spec"><span class="k">Availability</span><span class="v">${p.stock > 0 ? `${p.stock} in stock` : 'Out of stock'}</span></div>
+        <div class="spec"><span class="k">Warranty</span><span class="v">24 months</span></div>
+        <div class="spec"><span class="k">Lead time</span><span class="v">2–4 business days</span></div>
+      </div>
+      <div class="pd-price-row"><div class="price"><span class="cur">€</span>${p.price.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div><div style="text-align:right;font-size:12px;color:var(--muted);"><div>ex. VAT (19%)</div><div style="color:var(--cta);"><i class="fa-solid fa-truck-fast"></i> Free shipping over €250</div></div></div>
+      <div class="pd-buy"><button class="btn-cta" onclick="handleAddToCart('${p.id}');closeProductDetail();" ${p.stock === 0 ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}><i class="fa-solid fa-cart-plus"></i> ${p.stock === 0 ? 'Out of Stock' : 'Add to Cart'}</button></div>
+    </div></div>`;
+  document.getElementById('productDetailModal').classList.add('active');
+}
+function closeProductDetail() { document.getElementById('productDetailModal').classList.remove('active'); }
+
+// ===== Auth =====
+function openAuth(tab = 'login') { document.getElementById('authModal').classList.add('active'); switchAuth(tab); }
+function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
+function switchAuth(mode) {
+  const isLogin = mode === 'login';
+  document.getElementById('tabLogin').classList.toggle('active', isLogin);
+  document.getElementById('tabRegister').classList.toggle('active', !isLogin);
+  document.getElementById('loginForm').classList.toggle('hidden', !isLogin);
+  document.getElementById('registerForm').classList.toggle('hidden', isLogin);
+}
+
+function doLogin(e) {
+  e.preventDefault();
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if (user === ADMIN_USER && pass === ADMIN_PASS) {
+    state.currentUser = { name: 'Administrator', email: 'admin@limburg-te.de', role: 'admin' };
+    save(K.currentUser, state.currentUser);
+    updateLoginUI(); closeAuth();
+    toast('Welcome back, Administrator');
+    setTimeout(() => openAdmin(), 300);
+    return;
+  }
+  const found = state.users.find(u => (u.email === user || u.name === user) && u.password === pass);
+  if (!found) { toast('Invalid credentials', 'err'); return; }
+  state.currentUser = { name: found.name, email: found.email, role: 'user' };
+  save(K.currentUser, state.currentUser);
+  updateLoginUI(); closeAuth();
+  toast(`Welcome back, ${found.name.split(' ')[0]}`);
+}
+
+function doRegister(e) {
+  e.preventDefault();
+  const first = document.getElementById('regFirst').value.trim();
+  const last = document.getElementById('regLast').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('regPass').value;
+  if (state.users.find(u => u.email === email)) { toast('Email already registered', 'err'); return; }
+  const newUser = { id: 'u' + Date.now(), name: `${first} ${last}`, email, password: pass, joined: new Date().toISOString() };
+  state.users.push(newUser); save(K.users, state.users);
+  state.currentUser = { name: newUser.name, email: newUser.email, role: 'user' };
+  save(K.currentUser, state.currentUser);
+  updateLoginUI(); closeAuth();
+  toast(`Account created — welcome, ${first}`);
+}
+
+function logout() {
+  state.currentUser = null; save(K.currentUser, null);
+  closeUserMenu(); closeAdmin();
+  updateLoginUI();
+  toast('Logged out successfully');
+}
+
+// ===== NEW: User dropdown menu with logout =====
+function handleLoginClick() {
+  if (state.currentUser) {
+    toggleUserMenu();
+  } else {
+    openAuth('login');
+  }
+}
+
+function toggleUserMenu() {
+  document.getElementById('userDropdown').classList.toggle('active');
+}
+
+function closeUserMenu() {
+  document.getElementById('userDropdown').classList.remove('active');
+}
+
+function updateLoginUI() {
+  const loginBtn = document.getElementById('loginBtn');
+  const registerBtn = document.getElementById('registerBtn');
+  const userMenuWrap = document.getElementById('userMenuWrap');
+
+  if (state.currentUser) {
+    // Hide login/register buttons, show user menu
+    loginBtn.style.display = 'none';
+    registerBtn.classList.add('hidden');
+    userMenuWrap.style.display = 'block';
+
+    // Set user info in dropdown
+    document.getElementById('userMenuName').textContent = state.currentUser.name.split(' ')[0];
+    document.getElementById('udName').textContent = state.currentUser.name;
+    document.getElementById('udEmail').textContent = state.currentUser.email;
+
+    // Show admin dashboard option only for admins
+    const adminBtn = document.getElementById('menuAdminBtn');
+    if (state.currentUser.role === 'admin') {
+      adminBtn.style.display = 'flex';
+    } else {
+      adminBtn.style.display = 'none';
+    }
+  } else {
+    // Show login/register, hide user menu
+    loginBtn.style.display = 'flex';
+    registerBtn.classList.remove('hidden');
+    userMenuWrap.style.display = 'none';
+    loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> <span>Login</span>`;
+  }
+}
+
+// ===== Admin =====
+function openAdmin() {
+  if (!state.currentUser || state.currentUser.role !== 'admin') { openAuth('login'); return; }
+  renderAdmin();
+  document.getElementById('adminModal').classList.add('active');
+}
+function closeAdmin() { document.getElementById('adminModal').classList.remove('active'); }
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tabs button').forEach(b => b.classList.toggle('active', b.dataset.atab === tab));
+  document.getElementById('adminProducts').classList.toggle('hidden', tab !== 'products');
+  document.getElementById('adminOrders').classList.toggle('hidden', tab !== 'orders');
+  document.getElementById('adminUsers').classList.toggle('hidden', tab !== 'users');
+}
+function renderAdmin() {
+  const totalRevenue = state.orders.reduce((s, o) => s + o.total, 0);
+  const totalStock = state.products.reduce((s, p) => s + p.stock, 0);
+  document.getElementById('adminStats').innerHTML = `
+    <div class="stat-card"><div class="label">Products</div><div class="value">${state.products.length}</div><div class="delta">${totalStock} units in stock</div></div>
+    <div class="stat-card"><div class="label">Orders</div><div class="value">${state.orders.length}</div><div class="delta">${state.orders.filter(o => o.status === 'Processing').length} processing</div></div>
+    <div class="stat-card"><div class="label">Revenue</div><div class="value">€${totalRevenue.toLocaleString('de-DE', {maximumFractionDigits: 0})}</div><div class="delta">+${state.orders.length} orders</div></div>
+    <div class="stat-card"><div class="label">Users</div><div class="value">${state.users.length}</div><div class="delta">Registered customers</div></div>`;
+  document.getElementById('prodCount').textContent = `(${state.products.length})`;
+  document.getElementById('adminProdBody').innerHTML = state.products.map(p => `<tr>
+    <td><div class="prod-cell">${p.img ? `<img src="${p.img}" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;width:40px;height:40px;background:var(--surface);border-radius:4px;display:grid;place-items:center;'><i class=&quot;fa-solid fa-gear&quot;></i></div>';">` : `<div style="width:40px;height:40px;background:var(--surface);border-radius:4px;display:grid;place-items:center;"><i class="fa-solid fa-gear" style="color:var(--muted);"></i></div>`}<div><div class="pn">${p.name}</div><div style="font-size:11px;color:var(--muted);">${p.sku || p.id}</div></div></div></td>
+    <td>${p.cat}</td><td>${p.brand}</td><td><b>€${p.price.toFixed(2)}</b></td>
+    <td style="color:${p.stock === 0 ? 'var(--muted)' : p.stock < 6 ? 'var(--warning)' : 'var(--cta)'};">${p.stock}</td>
+    <td><div class="actions"><button onclick="editProduct('${p.id}')" title="Edit"><i class="fa-solid fa-pen"></i></button><button class="del" onclick="deleteProduct('${p.id}')" title="Delete"><i class="fa-solid fa-trash"></i></button></div></td></tr>`).join('');
+  document.getElementById('adminOrdersBody').innerHTML = state.orders.length === 0 ? `<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--muted);">No orders yet</td></tr>` : state.orders.map(o => `<tr><td><b>${o.id}</b></td><td>${o.userName}<br><span style="font-size:11px;color:var(--muted);">${o.user}</span></td><td>${o.items.reduce((s, x) => s + x.qty, 0)} items</td><td><b>€${o.total.toFixed(2)}</b></td><td><span style="background:var(--warning);color:#000;padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700;">${o.status}</span></td><td>${new Date(o.date).toLocaleDateString('de-DE')}</td></tr>`).join('');
+  document.getElementById('adminUsersBody').innerHTML = state.users.length === 0 ? `<tr><td colspan="3" style="text-align:center;padding:40px;color:var(--muted);">No registered users yet</td></tr>` : state.users.map(u => `<tr><td><b>${u.name}</b></td><td>${u.email}</td><td>${new Date(u.joined).toLocaleDateString('de-DE')}</td></tr>`).join('');
+}
+
+// ===== FIXED: Product form functions =====
+function openProductForm() {
+  document.getElementById('prodFormTitle').textContent = 'Add Product';
+  document.getElementById('productForm').reset();
+  document.getElementById('prodId').value = '';
+  document.getElementById('productFormModal').classList.add('active');
+}
+
+function closeProductForm() {
+  document.getElementById('productFormModal').classList.remove('active');
+}
+
+function editProduct(id) {
+  const p = state.products.find(x => x.id === id);
+  if (!p) { toast('Product not found', 'err'); return; }
+  document.getElementById('prodFormTitle').textContent = 'Edit Product';
+  document.getElementById('prodId').value = p.id;
+  document.getElementById('prodName').value = p.name;
+  document.getElementById('prodDesc').value = p.desc || '';
+  document.getElementById('prodCat').value = p.cat;
+  document.getElementById('prodBrand').value = p.brand;
+  document.getElementById('prodPrice').value = p.price;
+  document.getElementById('prodStock').value = p.stock;
+  document.getElementById('prodImage').value = p.img || '';
+  document.getElementById('productFormModal').classList.add('active');
+}
+
+function saveProduct(e) {
+  e.preventDefault();
+  const id = document.getElementById('prodId').value;
+  const data = {
+    name: document.getElementById('prodName').value.trim(),
+    desc: document.getElementById('prodDesc').value.trim(),
+    cat: document.getElementById('prodCat').value,
+    brand: document.getElementById('prodBrand').value.trim(),
+    price: parseFloat(document.getElementById('prodPrice').value),
+    stock: parseInt(document.getElementById('prodStock').value),
+    img: document.getElementById('prodImage').value.trim()
+  };
+
+  if (!data.name || !data.brand || isNaN(data.price) || isNaN(data.stock)) {
+    toast('Please fill all required fields', 'err');
+    return;
+  }
+
+  if (id) {
+    // Edit existing product
+    const p = state.products.find(x => x.id === id);
+    if (p) {
+      Object.assign(p, data);
+      toast('Product updated successfully');
+    }
+  } else {
+    // Add new product
+    const newProduct = {
+      id: 'p' + Date.now(),
+      ...data,
+      tag: '',
+      sku: 'LP-' + Date.now().toString(36).toUpperCase()
+    };
+    state.products.unshift(newProduct);
+    toast('Product added successfully');
+  }
+
+  save(K.products, state.products);
+  renderProducts();
+  renderAdmin();
+  closeProductForm();
+}
+
+function deleteProduct(id) {
+  if (!confirm('Delete this product?')) return;
+  state.products = state.products.filter(x => x.id !== id);
+  save(K.products, state.products);
+  renderProducts();
+  renderAdmin();
+  toast('Product deleted');
+}
+
+function subscribeNews() {
+  const email = document.getElementById('newsletterInput').value.trim();
+  if (!email) { toast('Enter your email', 'warn'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('Invalid email', 'err'); return; }
+  document.getElementById('newsletterInput').value = '';
+  toast('Subscribed — welcome aboard!');
+}
+
+// ===== Init =====
+function init() {
+  initState(); initTheme(); renderHero(); renderCats(); renderProducts();
+  updateCartUI(); updateLoginUI();
+  document.getElementById('favCount').textContent = state.favorites.length;
+  resetSlideTimer();
+
+  document.querySelectorAll('#catNav a').forEach(a => {
+    a.addEventListener('click', e => { e.preventDefault(); setFilter(a.dataset.cat); scrollToProducts(); });
+  });
+  document.querySelectorAll('#filterChips .chip').forEach(c => {
+    c.addEventListener('click', () => setFilter(c.dataset.filter));
+  });
+
+  // Close user dropdown when clicking outside
+  document.addEventListener('click', e => {
+    const wrap = document.getElementById('userMenuWrap');
+    const dropdown = document.getElementById('userDropdown');
+    if (wrap && dropdown && !wrap.contains(e.target)) {
+      dropdown.classList.remove('active');
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeCart(); closeAuth(); closeAdmin(); closeProductForm(); closeProductDetail(); closeUserMenu(); }
+  });
+}
+
+init();
+</script>
+</body>
+</html>
