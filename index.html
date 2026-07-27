@@ -98,20 +98,9 @@ body.light-theme::before {
     radial-gradient(600px 400px at 0% 100%, rgba(37,99,235,0.04), transparent 60%);
 }
 
-/* ===== LTE Logo ===== */
+/* ===== LTE Logo (Image-based) ===== */
 .logo-lte { display: flex; align-items: center; gap: 10px; user-select: none; cursor: pointer; }
-.logo-symbol {
-  width: 46px; height: 46px; background: #000; display: flex; align-items: center; justify-content: center;
-  font-family: 'Archivo Black', sans-serif; color: #fff; font-size: 18px; border-radius: 2px;
-  position: relative; border: 1px solid #333;
-}
-.logo-symbol::after { content: ''; position: absolute; width: 6px; height: 6px; background: var(--brand); bottom: 6px; right: 6px; border-radius: 50%; }
-.logo-text-right { display: flex; flex-direction: column; line-height: 1; }
-.logo-main-text { font-family: 'Archivo Black', sans-serif; font-size: 20px; color: var(--fg); letter-spacing: 0.5px; }
-.logo-sub-text { display: flex; align-items: center; gap: 3px; margin-top: 4px; }
-.logo-trade { background: var(--brand); color: white; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 2px; letter-spacing: 0.5px; }
-.logo-amp { color: var(--fg-dim); font-weight: 800; font-size: 11px; }
-.logo-eng { background: var(--blue-accent); color: white; font-size: 9px; font-weight: 800; padding: 3px 6px; border-radius: 2px; letter-spacing: 0.5px; }
+.logo-img { height: 50px; width: auto; border-radius: 4px; object-fit: contain; }
 
 /* ===== Topbar ===== */
 .topbar { background: var(--topbar-bg); border-bottom: 1px solid var(--border); font-size: 12px; color: var(--muted); position: relative; z-index: 50; transition: background-color .3s ease; }
@@ -177,8 +166,8 @@ body.light-theme::before {
 .catnav a.active { color: var(--brand); }
 .catnav a i { font-size: 11px; }
 
-/* ===== Hero ===== */
-.hero { position: relative; height: 600px; overflow: hidden; background: #000; }
+/* ===== Hero — 16:9 Aspect Ratio ===== */
+.hero { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 640px; overflow: hidden; background: #000; }
 .hero-track { display: flex; height: 100%; transition: transform .9s cubic-bezier(.7,.05,.2,1); will-change: transform; }
 .slide { flex: 0 0 100%; height: 100%; position: relative; overflow: hidden; }
 .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
@@ -240,7 +229,6 @@ body.light-theme::before {
 }
 .product-card:hover { border-color: var(--border-light); transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
-/* Category-based colorful backgrounds */
 .product-card[data-cat="Gas Control"] {
   background: linear-gradient(160deg, rgba(230,57,70,0.12) 0%, var(--card) 50%);
 }
@@ -276,7 +264,6 @@ body.light-theme::before {
 }
 .product-card[data-cat="Service Kits"]:hover { background: linear-gradient(160deg, rgba(236,72,153,0.18) 0%, var(--card-hover) 50%); }
 
-/* Colorful product image area */
 .product-img {
   position: relative; aspect-ratio: 4/3; overflow: hidden; display: grid; place-items: center;
 }
@@ -291,7 +278,6 @@ body.light-theme::before {
 .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
 .product-card:hover .product-img img { transform: scale(1.08); }
 
-/* Colorful placeholder icons per category */
 .product-img .placeholder { font-size: 56px; opacity: 0.6; }
 .product-card[data-cat="Gas Control"] .placeholder { color: #ff6b6b; text-shadow: 0 0 30px rgba(230,57,70,0.4); }
 .product-card[data-cat="Engine Technology"] .placeholder { color: #60a5fa; text-shadow: 0 0 30px rgba(37,99,235,0.4); }
@@ -324,10 +310,12 @@ body.light-theme::before {
 .btn-add:active { transform: scale(0.92); }
 .btn-add.disabled { background: var(--muted-dim); cursor: not-allowed; }
 
-/* ===== Brands strip ===== */
-.brands-strip { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 36px 0; overflow: hidden; transition: background-color .3s ease; }
-.brands-strip .container { display: flex; align-items: center; gap: 60px; }
-.brands-strip .label { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--fg); text-transform: uppercase; white-space: nowrap; border-right: 1px solid var(--border); padding-right: 36px; }
+/* ===== Brands strip — with LIMBURG logo on top ===== */
+.brands-strip { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 0; overflow: hidden; transition: background-color .3s ease; }
+.brands-strip .container { display: block; }
+.brands-top { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 36px; }
+.brands-logo-img { height: 72px; width: auto; border-radius: 6px; box-shadow: var(--shadow-sm); }
+.brands-strip .label { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 600; color: var(--fg); text-transform: uppercase; white-space: nowrap; text-align: center; padding-right: 0; border-right: none; }
 .brands-strip .label span { color: var(--brand); }
 .brands-row { display: flex; gap: 56px; animation: scrollBrands 30s linear infinite; white-space: nowrap; }
 @keyframes scrollBrands { to { transform: translateX(-50%); } }
@@ -446,7 +434,7 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
 .admin-hint { background: rgba(230,57,70,0.08); border: 1px dashed var(--brand); border-radius: var(--r-md); padding: 12px 14px; margin-top: 16px; font-size: 12px; color: var(--fg-dim); text-align: center; }
 .admin-hint b { color: var(--brand); }
 
-/* ===== FIX: Modal card base styles (was missing — caused add/edit form to be invisible) ===== */
+/* ===== Modal card base styles ===== */
 .modal-card {
   position: relative;
   background: var(--bg);
@@ -510,6 +498,11 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
 .pd-buy { display: flex; gap: 10px; }
 .pd-buy .btn-cta { flex: 1; justify-content: center; }
 
+/* ===== Order detail expandable row ===== */
+.order-detail-row td { background: var(--surface); padding: 16px !important; }
+.order-detail-item { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.order-detail-item:last-child { border-bottom: none; }
+
 /* ===== Toast ===== */
 .toast-wrap { position: fixed; top: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 10px; }
 .toast { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--cta); padding: 14px 18px; border-radius: var(--r-md); display: flex; align-items: center; gap: 12px; min-width: 280px; box-shadow: var(--shadow-md); animation: toastIn .35s cubic-bezier(.4,0,.2,1); font-size: 13px; color: var(--fg); }
@@ -538,7 +531,8 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   .header .container { gap: 12px; height: 64px; }
   .search-bar { display: none; }
   .topbar-left .hide-m { display: none; }
-  .hero { height: 360px; }
+  .logo-img { height: 38px; }
+  .brands-logo-img { height: 50px; }
   .cta-banner { flex-direction: column; padding: 32px 24px; text-align: center; }
   .cta-banner h2 { font-size: 28px; }
   .cat-grid, .products-grid { grid-template-columns: 1fr; }
@@ -580,16 +574,9 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
 <!-- Header -->
 <header class="header">
   <div class="container">
+    <!-- ===== FIXED: Logo image replaces text logo ===== -->
     <div class="logo-lte" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-      <div class="logo-symbol">LTE</div>
-      <div class="logo-text-right">
-        <div class="logo-main-text">LIMBURG</div>
-        <div class="logo-sub-text">
-          <span class="logo-trade">TRADE</span>
-          <span class="logo-amp">&</span>
-          <span class="logo-eng">ENGINEERING</span>
-        </div>
-      </div>
+      <img src="https://z-cdn-media.chatglm.cn/files/fc5c973a-2bdc-401f-a288-cbb7580a24f7.jpeg?auth_key=1885118716-332256b1336b4818b46772fdeb51cd81-0-5d38cabe40f808f54ca3b5845448daed" alt="LIMBURG TRADE & ENGINEERING" class="logo-img">
     </div>
 
     <div class="search-bar">
@@ -631,10 +618,12 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
           <button id="menuAdminBtn" onclick="openAdmin();closeUserMenu();" style="display:none;">
             <i class="fa-solid fa-screwdriver-wrench"></i> Admin Dashboard
           </button>
-          <button onclick="closeUserMenu();">
+          <!-- ===== FIXED: My Orders now opens a modal ===== -->
+          <button onclick="openOrders()">
             <i class="fa-solid fa-bag-shopping"></i> My Orders
           </button>
-          <button onclick="closeUserMenu();">
+          <!-- ===== FIXED: Account Settings now opens a modal ===== -->
+          <button onclick="openSettings()">
             <i class="fa-solid fa-gear"></i> Account Settings
           </button>
           <button class="logout-btn" onclick="logout()">
@@ -660,7 +649,7 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   </div>
 </nav>
 
-<!-- Hero slider -->
+<!-- Hero slider — 16:9 -->
 <section class="hero">
   <div class="hero-track" id="heroTrack"></div>
   <div class="hero-controls">
@@ -730,10 +719,13 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   </div>
 </section>
 
-<!-- Brands strip -->
+<!-- ===== Brands strip — LIMBURG logo on top, OEM Partners scrolling below ===== -->
 <section class="brands-strip">
   <div class="container">
-    <div class="label">OEM <span>Partners</span></div>
+    <div class="brands-top">
+      <img src="https://z-cdn-media.chatglm.cn/files/fc5c973a-2bdc-401f-a288-cbb7580a24f7.jpeg?auth_key=1885118716-332256b1336b4818b46772fdeb51cd81-0-5d38cabe40f808f54ca3b5845448daed" alt="LIMBURG TRADE & ENGINEERING" class="brands-logo-img">
+      <div class="label">OEM <span>Partners</span></div>
+    </div>
     <div class="brands-row">
       <span class="brand-item">DUNGS</span><span class="brand-item">PERKINS</span><span class="brand-item">MWM</span><span class="brand-item">JENBACHER</span><span class="brand-item">HONEYWELL</span><span class="brand-item">BOSCH</span><span class="brand-item">NGK</span><span class="brand-item">FEDERAL MOGUL</span><span class="brand-item">MAHLE</span>
       <span class="brand-item">DUNGS</span><span class="brand-item">PERKINS</span><span class="brand-item">MWM</span><span class="brand-item">JENBACHER</span><span class="brand-item">HONEYWELL</span><span class="brand-item">BOSCH</span><span class="brand-item">NGK</span><span class="brand-item">FEDERAL MOGUL</span><span class="brand-item">MAHLE</span>
@@ -777,12 +769,9 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
+        <!-- ===== FIXED: Logo image in footer ===== -->
         <div class="logo-lte" style="margin-bottom: 18px;">
-          <div class="logo-symbol">LTE</div>
-          <div class="logo-text-right">
-            <div class="logo-main-text">LIMBURG</div>
-            <div class="logo-sub-text"><span class="logo-trade">TRADE</span><span class="logo-amp">&</span><span class="logo-eng">ENGINEERING</span></div>
-          </div>
+          <img src="https://z-cdn-media.chatglm.cn/files/fc5c973a-2bdc-401f-a288-cbb7580a24f7.jpeg?auth_key=1885118716-332256b1336b4818b46772fdeb51cd81-0-5d38cabe40f808f54ca3b5845448daed" alt="LIMBURG TRADE & ENGINEERING" class="logo-img">
         </div>
         <p>Limburg Trade & Engineering GmbH — Your certified partner for industrial spare parts, gas control systems, and CHP service components across Europe.</p>
         <div class="footer-contact">
@@ -831,12 +820,9 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   <div class="auth-card">
     <div class="auth-brand">
       <div class="auth-brand-content">
+        <!-- ===== FIXED: Logo image in auth modal ===== -->
         <div class="logo-lte" style="margin-bottom: 24px;">
-          <div class="logo-symbol">LTE</div>
-          <div class="logo-text-right">
-            <div class="logo-main-text">LIMBURG</div>
-            <div class="logo-sub-text"><span class="logo-trade">TRADE</span><span class="logo-amp">&</span><span class="logo-eng">ENGINEERING</span></div>
-          </div>
+          <img src="https://z-cdn-media.chatglm.cn/files/fc5c973a-2bdc-401f-a288-cbb7580a24f7.jpeg?auth_key=1885118716-332256b1336b4818b46772fdeb51cd81-0-5d38cabe40f808f54ca3b5845448daed" alt="LIMBURG TRADE & ENGINEERING" class="logo-img" style="height:60px;">
         </div>
         <h2>Welcome to the<br>Industrial Cloud</h2>
         <p>Access your spare parts inventory, track CHP orders, and manage your energy systems securely.</p>
@@ -917,7 +903,7 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
   </div>
 </div>
 
-<!-- Product form modal — FIXED: now has proper .modal-card styling -->
+<!-- Product form modal -->
 <div class="modal" id="productFormModal">
   <div class="modal-bg" onclick="closeProductForm()"></div>
   <div class="modal-card" style="max-width: 520px;">
@@ -983,6 +969,46 @@ textarea.form-input { padding: 13px 14px; resize: vertical; min-height: 80px; }
       <button class="modal-close" onclick="closeProductDetail()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="modal-body" id="productDetailBody"></div>
+  </div>
+</div>
+
+<!-- ===== NEW: My Orders Modal ===== -->
+<div class="modal" id="ordersModal">
+  <div class="modal-bg" onclick="closeOrders()"></div>
+  <div class="modal-card lg">
+    <div class="modal-head">
+      <div><h3><i class="fa-solid fa-bag-shopping"></i> My Orders</h3><div class="sub">View your order history and track shipments.</div></div>
+      <button class="modal-close" onclick="closeOrders()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="ordersBody"></div>
+  </div>
+</div>
+
+<!-- ===== NEW: Account Settings Modal ===== -->
+<div class="modal" id="settingsModal">
+  <div class="modal-bg" onclick="closeSettings()"></div>
+  <div class="modal-card" style="max-width: 520px;">
+    <div class="modal-head">
+      <div><h3><i class="fa-solid fa-gear"></i> Account Settings</h3><div class="sub">Update your profile information.</div></div>
+      <button class="modal-close" onclick="closeSettings()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="settingsForm" onsubmit="saveSettings(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <div class="input-wrap"><i class="fa-solid fa-user"></i><input class="form-input" type="text" id="setName" required></div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <div class="input-wrap"><i class="fa-solid fa-envelope"></i><input class="form-input" type="email" id="setEmail" required></div>
+        </div>
+        <div class="form-group">
+          <label>New Password <span style="text-transform:none;color:var(--muted);font-weight:400;">(leave blank to keep current)</span></label>
+          <div class="input-wrap"><i class="fa-solid fa-lock"></i><input class="form-input" type="password" id="setPass" placeholder="••••••••"></div>
+        </div>
+        <button type="submit" class="btn-submit"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -1062,8 +1088,9 @@ function initTheme() {
   }
 }
 
-// ===== Hero slider =====
+// ===== Hero slider — includes promotional 16:9 image =====
 const slides = [
+  { img: 'https://z-cdn-media.chatglm.cn/files/31ff642a-e218-4b8d-a6cd-640d44d07473.png?auth_key=1885118716-047697d45c164bb48e11bccaf75ae8e4-0-7777750b13c82696988b2f6d3b1e93a3' },
   { img: 'https://z-cdn-media.chatglm.cn/files/5551ba4d-06cd-4e3a-ba9d-1de7620caa51.png?auth_key=1885085681-7b2ca4e48633405795b53e7b317b75b3-0-5bb1fc5e4bc8dac710fac757bff39eee' },
   { img: 'https://z-cdn-media.chatglm.cn/files/eb1f0ff5-08e4-4ed1-ab04-15c67034ca82.png?auth_key=1885087137-e5c3dd59469942a2a04c6cf0a906ad2a-0-ecb39750326c86bea5717ee0fdde4d46' },
   { img: 'https://z-cdn-media.chatglm.cn/files/9135ead3-3d1b-4473-90a3-8edfc9ab5140.png?auth_key=1885085681-b104ef97b2744cdb8abd7bf5a7d2731b-0-3bbea7e82ebbf1591eb84dc37afeb96a' }
@@ -1327,12 +1354,12 @@ function doRegister(e) {
 
 function logout() {
   state.currentUser = null; save(K.currentUser, null);
-  closeUserMenu(); closeAdmin();
+  closeUserMenu(); closeAdmin(); closeOrders(); closeSettings();
   updateLoginUI();
   toast('Logged out successfully');
 }
 
-// ===== NEW: User dropdown menu with logout =====
+// ===== User dropdown menu =====
 function handleLoginClick() {
   if (state.currentUser) {
     toggleUserMenu();
@@ -1355,17 +1382,14 @@ function updateLoginUI() {
   const userMenuWrap = document.getElementById('userMenuWrap');
 
   if (state.currentUser) {
-    // Hide login/register buttons, show user menu
     loginBtn.style.display = 'none';
     registerBtn.classList.add('hidden');
     userMenuWrap.style.display = 'block';
 
-    // Set user info in dropdown
     document.getElementById('userMenuName').textContent = state.currentUser.name.split(' ')[0];
     document.getElementById('udName').textContent = state.currentUser.name;
     document.getElementById('udEmail').textContent = state.currentUser.email;
 
-    // Show admin dashboard option only for admins
     const adminBtn = document.getElementById('menuAdminBtn');
     if (state.currentUser.role === 'admin') {
       adminBtn.style.display = 'flex';
@@ -1373,12 +1397,124 @@ function updateLoginUI() {
       adminBtn.style.display = 'none';
     }
   } else {
-    // Show login/register, hide user menu
     loginBtn.style.display = 'flex';
     registerBtn.classList.remove('hidden');
     userMenuWrap.style.display = 'none';
     loginBtn.innerHTML = `<i class="fa-solid fa-user"></i> <span>Login</span>`;
   }
+}
+
+// ===== NEW: My Orders modal =====
+function openOrders() {
+  closeUserMenu();
+  if (!state.currentUser) { openAuth('login'); return; }
+
+  // Show all orders for admin, user-specific for regular users
+  const userOrders = state.currentUser.role === 'admin'
+    ? state.orders
+    : state.orders.filter(o => o.user === state.currentUser.email);
+
+  const body = document.getElementById('ordersBody');
+
+  if (userOrders.length === 0) {
+    body.innerHTML = `
+      <div style="text-align:center;padding:60px 20px;color:var(--muted);">
+        <i class="fa-solid fa-bag-shopping" style="font-size:56px;margin-bottom:16px;color:var(--muted-dim);"></i>
+        <p style="font-size:16px;margin-bottom:6px;color:var(--fg);">No orders yet</p>
+        <span style="font-size:13px;">Your order history will appear here once you place an order.</span>
+      </div>`;
+  } else {
+    body.innerHTML = `
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead>
+            <tr><th>Order #</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Details</th></tr>
+          </thead>
+          <tbody>
+            ${userOrders.map(o => `
+              <tr>
+                <td><b>${o.id}</b></td>
+                <td>${o.items.reduce((s, x) => s + x.qty, 0)} items</td>
+                <td><b>€${o.total.toFixed(2)}</b></td>
+                <td><span style="background:var(--warning);color:#000;padding:3px 8px;border-radius:100px;font-size:11px;font-weight:700;">${o.status}</span></td>
+                <td>${new Date(o.date).toLocaleDateString('de-DE')}</td>
+                <td><button onclick="toggleOrderDetails('${o.id}')" style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:5px 12px;font-size:12px;color:var(--fg-dim);cursor:pointer;transition:all .2s;" onmouseover="this.style.background='var(--brand);this.style.color=#fff'" onmouseout="this.style.background='var(--surface)';this.style.color='var(--fg-dim)'">View</button></td>
+              </tr>
+              <tr id="orderDetail_${o.id}" class="hidden order-detail-row">
+                <td colspan="6" style="padding:16px;background:var(--surface);">
+                  <div style="font-size:12px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Order ${o.id} — Item Details</div>
+                  ${o.items.map(item => `<div class="order-detail-item"><span><b>${item.qty}×</b> ${item.name} <span style="color:var(--muted);">(${item.brand})</span></span><span>€${(item.price * item.qty).toFixed(2)}</span></div>`).join('')}
+                  <div class="order-detail-item" style="font-weight:700;color:var(--fg);margin-top:8px;padding-top:10px;border-top:2px solid var(--border);"><span>Total</span><span>€${o.total.toFixed(2)}</span></div>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  }
+
+  document.getElementById('ordersModal').classList.add('active');
+}
+
+function toggleOrderDetails(id) {
+  const row = document.getElementById('orderDetail_' + id);
+  if (row) row.classList.toggle('hidden');
+}
+
+function closeOrders() {
+  document.getElementById('ordersModal').classList.remove('active');
+}
+
+// ===== NEW: Account Settings modal =====
+function openSettings() {
+  closeUserMenu();
+  if (!state.currentUser) { openAuth('login'); return; }
+
+  document.getElementById('setName').value = state.currentUser.name;
+  document.getElementById('setEmail').value = state.currentUser.email;
+  document.getElementById('setPass').value = '';
+
+  document.getElementById('settingsModal').classList.add('active');
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('active');
+}
+
+function saveSettings(e) {
+  e.preventDefault();
+  const name = document.getElementById('setName').value.trim();
+  const email = document.getElementById('setEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('setPass').value;
+
+  if (!name || !email) { toast('Name and email are required', 'err'); return; }
+
+  const oldEmail = state.currentUser.email;
+
+  // Update current user state
+  state.currentUser.name = name;
+  state.currentUser.email = email;
+  save(K.currentUser, state.currentUser);
+
+  // If regular user, update in users array
+  if (state.currentUser.role !== 'admin') {
+    const user = state.users.find(u => u.email === oldEmail);
+    if (user) {
+      user.name = name;
+      user.email = email;
+      if (pass) user.password = pass;
+      save(K.users, state.users);
+    }
+    // Update orders with new email
+    state.orders.forEach(o => {
+      if (o.user === oldEmail) { o.user = email; }
+    });
+    save(K.orders, state.orders);
+  }
+
+  updateLoginUI();
+  closeSettings();
+  toast('Account settings saved successfully');
 }
 
 // ===== Admin =====
@@ -1412,7 +1548,7 @@ function renderAdmin() {
   document.getElementById('adminUsersBody').innerHTML = state.users.length === 0 ? `<tr><td colspan="3" style="text-align:center;padding:40px;color:var(--muted);">No registered users yet</td></tr>` : state.users.map(u => `<tr><td><b>${u.name}</b></td><td>${u.email}</td><td>${new Date(u.joined).toLocaleDateString('de-DE')}</td></tr>`).join('');
 }
 
-// ===== FIXED: Product form functions =====
+// ===== Product form functions =====
 function openProductForm() {
   document.getElementById('prodFormTitle').textContent = 'Add Product';
   document.getElementById('productForm').reset();
@@ -1458,14 +1594,12 @@ function saveProduct(e) {
   }
 
   if (id) {
-    // Edit existing product
     const p = state.products.find(x => x.id === id);
     if (p) {
       Object.assign(p, data);
       toast('Product updated successfully');
     }
   } else {
-    // Add new product
     const newProduct = {
       id: 'p' + Date.now(),
       ...data,
@@ -1522,8 +1656,12 @@ function init() {
     }
   });
 
+  // ===== FIXED: Escape now closes all modals including Orders & Settings =====
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeCart(); closeAuth(); closeAdmin(); closeProductForm(); closeProductDetail(); closeUserMenu(); }
+    if (e.key === 'Escape') {
+      closeCart(); closeAuth(); closeAdmin(); closeProductForm();
+      closeProductDetail(); closeUserMenu(); closeOrders(); closeSettings();
+    }
   });
 }
 
